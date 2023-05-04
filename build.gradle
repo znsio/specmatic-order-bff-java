@@ -4,23 +4,13 @@
 
 plugins {
     id 'java'
-    id 'maven-publish'
     id "org.jetbrains.kotlin.jvm" version "1.7.20"
 	id 'org.springframework.boot' version '2.7.11'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
 }
 
 repositories {
-    mavenLocal()
-
-    maven {
-        url = 'https://repo.maven.apache.org/maven2'
-    }
-
-    maven {
-        url = 'https://jcenter.bintray.com'
-    }
-
+    mavenCentral()
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
@@ -45,11 +35,6 @@ dependencies {
 }
 
 sourceSets {
-    main {
-        resources {
-            srcDir file('js')
-        }
-    }
     test {
         resources {
             srcDir file('src/test/kotlin')
@@ -67,18 +52,10 @@ test {
     testLogging.showStandardStreams = true
 }
 
-group = 'com.store'
+group = 'in.specmatic.sample'
 version = '1.0'
 sourceCompatibility = '1.8'
 
 configurations {
 
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
 }
