@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "test": "specmatic stub ./test/product-search-bff-api.yaml --data test/data --port 8082 > /dev/null 2>&1 & (sleep 3 && karma start --single-run && kill -9 $(lsof -t -i:8082))"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "karma": "^6.4.2",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-mocha": "^2.0.1",
+    "karma-webpack": "^5.0.0",
+    "mocha": "^10.2.0",
+    "specmatic": "^0.65.1",
+    "webpack": "^5.81.0"
+  }
+}

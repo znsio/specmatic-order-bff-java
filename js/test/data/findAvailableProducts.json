@@ -1,0 +1,16 @@
+{
+    "http-request": {
+        "path": "/findAvailableProducts?type=test",
+        "method": "GET"
+    },
+    "http-response": {
+        "status": 200,
+        "body": [
+            {
+                "id": 1,
+                "name": "iPhone"
+            }
+        ],
+        "status-text": "OK"
+    }
+}
