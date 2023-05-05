@@ -1,13 +1,24 @@
-# Specmatic Sample Client Application
+# Specmatic Sample: Springboot BFF calling Domain API
 
-![HTML client talks to client API which talks to backend api](specmatic-sample-architecture.svg)
+* [Specmatic Website](https://specmatic.in)
+* [Specmatic Documenation](https://specmatic.in/documentation.html)
 
-BFF = Backend For Frontend, the API invoked by the HTTP calls in the client HTML page (Website UI)
+This sample project demonstrates how we can contract driven development and testing of a BFF by stubbing calls to domain api service using specmatic stub server option using the domain api's OpenAPI spec.
 
-This project contains a small website UI, and an accompanying BFF (backend for frontend).
+Here is the [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/api_order_v1.yaml) of the domain api
 
-The BFF talks to the [backend API](https://github.com/znsio/specmatic-order-api).
-
-Here is the [contract](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/api_order_v1.yaml) governing the interaction of the BFF with the backend API.
+### Tech
+1. Spring boot
+2. Specmatic
+3. Karate
  
-The architecture diagram was created using the amazing free online SVG editor at [Vectr](https://vectr.com).
+### Start BFF Server
+This will start the springboot based backend api server
+```
+./gradlew bootRun
+```
+### Run Tests
+This will start the specmatic stub server for domain api using the information in specmatic.json and run the karate tests that expects the domain api at port 9000.
+```
+./gradlew test
+```
