@@ -3,7 +3,7 @@
 * [Specmatic Website](https://specmatic.in)
 * [Specmatic Documenation](https://specmatic.in/documentation.html)
 
-This sample project demonstrates how we can contract driven development and testing of a BFF by stubbing calls to domain api service using specmatic stub server option using the domain api's OpenAPI spec.
+This sample project demonstrates how we can contract driven development and testing of a BFF by stubbing calls to domain api service using specmatic stub  option using the domain api's OpenAPI spec.
 
 Here is the [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/api_order_v1.yaml) of the domain api
 
