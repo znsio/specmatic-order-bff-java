@@ -10,7 +10,15 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+    mavenLocal()
+
+    maven {
+        url = 'https://repo.maven.apache.org/maven2'
+    }
+
+    maven {
+        url = 'https://jcenter.bintray.com'
+    }
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
