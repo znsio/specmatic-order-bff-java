@@ -7,6 +7,7 @@ plugins {
     id "org.jetbrains.kotlin.jvm" version "1.7.20"
 	id 'org.springframework.boot' version '2.7.11'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
+    id 'jacoco'
 }
 
 repositories {
@@ -24,6 +25,13 @@ repositories {
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        csv.required = true
     }
 }
 
