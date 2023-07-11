@@ -1,6 +1,6 @@
 package contract
 
-import controllers.Application
+import com.component.orders.Application
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
 import `in`.specmatic.test.SpecmaticJUnitSupport
