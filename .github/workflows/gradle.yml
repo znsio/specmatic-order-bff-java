@@ -34,6 +34,7 @@ jobs:
       working-directory: main
     - name: Run coverage report
       run: ./gradlew jacocoTestReport
+      working-directory: main
     - name: Generate JaCoCo Badge
       id: jacoco
       uses: cicirello/jacoco-badge-generator@v2
