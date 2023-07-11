@@ -1,8 +1,9 @@
-package controllers
+package api.controllers
 
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
 import com.intuit.karate.junit5.Karate
+import controllers.Application
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.SpringApplication

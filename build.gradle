@@ -35,6 +35,7 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
 
     testImplementation('in.specmatic:specmatic-core:0.72.0')
+    testImplementation('in.specmatic:junit5-support:0.72.0')
     testImplementation(
             'org.assertj:assertj-core:3.12.2',
             'org.junit.jupiter:junit-jupiter-api:5.4.2'

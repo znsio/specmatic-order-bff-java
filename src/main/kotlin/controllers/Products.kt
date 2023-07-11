@@ -15,8 +15,8 @@ enum class API(val method: HttpMethod, val url: String) {
     CREATE_ORDER(HttpMethod.POST, "/orders")
 }
 
-data class ProductDetails(val id: Int, val name: String) {
-    constructor(json: JSONObject): this(json.getInt("id"), json.getString("name"))
+data class ProductDetails(val id: Int, val name: String, val inventory: Int, val type: String) {
+    constructor(json: JSONObject): this(json.getInt("id"), json.getString("name"), json.getInt("inventory"), json.getString("type"))
 }
 
 @RestController
