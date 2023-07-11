@@ -30,7 +30,7 @@ class APITests {
         @AfterAll
         @JvmStatic
         fun tearDown() {
-            service?.stop()
+            service?.close()
             stub.close()
         }
     }
