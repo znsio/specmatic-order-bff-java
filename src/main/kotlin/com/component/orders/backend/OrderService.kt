@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.*
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
-import java.net.URI
 
 @Service
 class OrderService {
@@ -52,17 +51,5 @@ class OrderService {
                 product["type"].toString()
             )
         }
-    }
-
-
-    fun getAuthToken(username: String, password: String): String {
-        val uri = URI.create("$orderAPIUrl/auth")
-        val headers = HttpHeaders()
-        headers["Content-Type"] = "application/json"
-
-        val request =
-            RequestEntity("{\"username\": \"$username\", \"password\": \"$password\"}", headers, HttpMethod.POST, uri)
-        val response = RestTemplate().exchange(request, String::class.java)
-        return response.body ?: ""
     }
 }
