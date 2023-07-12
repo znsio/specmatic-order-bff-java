@@ -1,4 +1,4 @@
-package api.controllers
+package com.component.orders.api
 
 import com.component.orders.Application
 import com.intuit.karate.junit5.Karate

@@ -1,4 +1,4 @@
-package contract
+package com.component.orders.contract
 
 import com.component.orders.Application
 import `in`.specmatic.stub.ContractStub
