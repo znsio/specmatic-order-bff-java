@@ -41,6 +41,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.2.4.RELEASE'
     implementation 'com.intuit.karate:karate-junit5:1.0.1'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.4.RELEASE'
 
     testImplementation('in.specmatic:specmatic-core:0.72.0')
     testImplementation('in.specmatic:junit5-support:0.72.0')
