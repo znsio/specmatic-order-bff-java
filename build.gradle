@@ -36,7 +36,7 @@ jacocoTestReport {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.2.4.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-test:2.2.4.RELEASE'
     implementation 'com.intuit.karate:karate-junit5:1.0.1'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
