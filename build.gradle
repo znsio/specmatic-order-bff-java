@@ -36,17 +36,17 @@ jacocoTestReport {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.2.4.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-test:2.2.4.RELEASE'
-    implementation 'com.intuit.karate:karate-junit5:1.0.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.1.1'
+    implementation 'org.springframework.boot:spring-boot-starter-test:3.1.1'
+    implementation 'com.intuit.karate:karate-junit5:1.3.1'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.4.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.1'
 
     testImplementation('in.specmatic:specmatic-core:0.72.0')
     testImplementation('in.specmatic:junit5-support:0.72.0')
     testImplementation(
-            'org.assertj:assertj-core:3.12.2',
-            'org.junit.jupiter:junit-jupiter-api:5.4.2'
+            'org.assertj:assertj-core:3.24.2',
+            'org.junit.jupiter:junit-jupiter-api:5.9.3'
     )
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
 }
