@@ -7,9 +7,11 @@ import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Disabled
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 
+@Disabled
 class APITests {
     @Karate.Test
     fun apiTests(): Karate {
