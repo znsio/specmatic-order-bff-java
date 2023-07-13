@@ -17,7 +17,6 @@ class APITests {
 
     companion object {
         private var service: ConfigurableApplicationContext? = null
-
         private lateinit var stub: ContractStub
 
         @BeforeAll

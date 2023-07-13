@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate
 
 @Service
 class OrderService {
-
     private val AUTHENTICATE_TOKEN = "API-TOKEN-HARI"
 
     @Value("\${order.api}")
@@ -22,7 +21,7 @@ class OrderService {
         val requestEntity = HttpEntity(order, headers)
         val response = RestTemplate().exchange(
             apiUrl,
-            HttpMethod.POST,
+            API.CREATE_ORDER.method,
             requestEntity,
             String::class.java
         )

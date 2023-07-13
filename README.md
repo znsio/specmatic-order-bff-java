@@ -3,7 +3,7 @@
 * [Specmatic Website](https://specmatic.in)
 * [Specmatic Documenation](https://specmatic.in/documentation.html)
 
-This sample project demonstrates how we can contract driven development and testing of a BFF by stubbing calls to domain api service using specmatic stub  option and domain api OpenAPI spec.
+This sample project demonstrates how we can practice contract-driven development and contract testing in a SpringBoot (Kotlin) application that depends on an external domain service. Here, specmatic is used to stub calls to domain API service based on its OpenAPI spec.
 
 Here is the domain api [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/api_order_v1.yaml)
 
@@ -13,11 +13,9 @@ Here is the domain api [contract/open api spec](https://github.com/znsio/specmat
 * Specmatic Stub Server: Create a server that can replace a real service using its open api spec
 
 ## Background
-A typical web application might look like this. Specmatic can contract driven development and testing of all the three components below. In this sample project, we look how to do this for BFF which is dependent on Domain API.
+A typical web application might look like this. We can use Specmatic to practice contract-driven development and test all the components mentioned below. In this sample project, we look at how to do this for SpringBoot BFF which is dependent on Domain API Service demonstrating OpenAPI stubbing support in specmatic.
 
-![HTML client talks to client API which talks to backend api](specmatic-sample-architecture.svg)
- 
-_The architecture diagram was created using the amazing free online SVG editor at [Vectr](https://vectr.com)._
+![HTML client talks to client API which talks to backend API](assets/specmatic-order-bff-architecture.gif)
 
 ## Tech
 1. Spring boot

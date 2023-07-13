@@ -1,52 +1,16 @@
 Feature: Tests
 
-  Scenario Outline: Search for available products
-    # ARRANGE
+  Scenario: Search for available products
+    * def data = karate.read('classpath:expectation.json')
     Given url 'http://localhost:9000/_specmatic/expectations'
-    And request
-    """
-      {
-        "http-request": {
-          "method": "GET",
-          "path": "/products",
-          "query": {
-            "type": "gadget"
-          }
-        },
-        "http-response": {
-          "status": 200,
-          "body": [
-            {
-              "name": "XYZ Laptop",
-              "type": "gadget",
-              "id": 10,
-              "inventory": 10
-            },
-            {
-              "name": "XYZ Phone",
-              "type": "gadget",
-              "id": 20,
-              "inventory": 0
-            }
-          ]
-        }
-      }
-    """
+    And request data
     When method post
     Then status 200
 
-    # ACT
-    Given url 'http://localhost:8080/findAvailableProducts?type=' + <productType>
+    Given url 'http://localhost:8080/findAvailableProducts?type=gadget'
     When method get
     Then status 200
-
-    # ASSERT
-    And assert response[0]["id"] == <productId>
-    And assert response[0]["name"] == <productName>
-
-    Examples:
-      | productType | productId | productName  |
-      | "gadget"    | 10        | "XYZ Laptop" |
+    And match response == data["http-response"].body
 
   Scenario Outline: Search for available products - Error condition
     Given url 'http://localhost:9000/_specmatic/expectations'
