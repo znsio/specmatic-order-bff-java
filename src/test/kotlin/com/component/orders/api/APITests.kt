@@ -33,9 +33,11 @@ class APITests {
         @AfterAll
         @JvmStatic
         fun tearDown() {
-            kafkaMock.stop()
             service?.close()
             stub.close()
+            kafkaMock.stop()
+            // Wait for Kafka server to stop
+            Thread.sleep(5000)
         }
     }
 }

@@ -49,9 +49,11 @@ class ContractTests: SpecmaticJUnitSupport() {
         @JvmStatic
         @AfterAll
         fun tearDown() {
-            kafkaMock.stop()
             context!!.close()
             stub.close()
+            kafkaMock.stop()
+            // Wait for Kafka server to stop
+            Thread.sleep(5000)
         }
     }
 
