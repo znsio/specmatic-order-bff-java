@@ -49,7 +49,7 @@ class APITests {
             stub.close()
             kafkaMock.stop()
             // Wait for Kafka server to stop
-            Thread.sleep(10000)
+            Thread.sleep(15000)
         }
     }
 }
