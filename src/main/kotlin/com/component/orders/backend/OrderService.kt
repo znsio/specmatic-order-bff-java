@@ -1,15 +1,21 @@
 package com.component.orders.backend
 
 import com.component.orders.models.*
+import com.component.orders.models.messages.ProductMessage
+import com.google.gson.Gson
+import org.apache.kafka.clients.producer.KafkaProducer
+import org.apache.kafka.clients.producer.ProducerRecord
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.*
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
+import java.util.*
 
 @Service
 class OrderService {
     private val AUTHENTICATE_TOKEN = "API-TOKEN-HARI"
+    private val gson = Gson()
 
     @Value("\${order.api}")
     lateinit var orderAPIUrl: String
@@ -39,6 +45,14 @@ class OrderService {
     }
 
     fun findProducts(type: String): List<Product> {
+        val products = fetchProductsFromBackendAPI(type)
+        products.forEach {
+            publishProductOnKafkaTopic(gson.toJson(ProductMessage(it.id, it.name, it.inventory)))
+        }
+        return products
+    }
+
+    private fun fetchProductsFromBackendAPI(type: String): List<Product> {
         val apiUrl = orderAPIUrl + "/" + API.FIND_PRODUCTS.url + "?type=$type"
         val response = RestTemplate().getForEntity(apiUrl, List::class.java)
         return response.body.map {
@@ -50,5 +64,14 @@ class OrderService {
                 product["type"].toString()
             )
         }
+    }
+
+    private fun publishProductOnKafkaTopic(productMessage: String) {
+        val props = Properties()
+        props["bootstrap.servers"] = "localhost:9092"
+        props["key.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
+        props["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
+        val producer = KafkaProducer<String, String>(props)
+        producer.send(ProducerRecord("product-queries", productMessage))
     }
 }

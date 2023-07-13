@@ -2,6 +2,7 @@ package com.component.orders.api
 
 import com.component.orders.Application
 import com.intuit.karate.junit5.Karate
+import `in`.specmatic.kafka.mock.KafkaMock
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
 import org.junit.jupiter.api.AfterAll
@@ -18,17 +19,21 @@ class APITests {
     companion object {
         private var service: ConfigurableApplicationContext? = null
         private lateinit var stub: ContractStub
+        private lateinit var kafkaMock: KafkaMock
 
         @BeforeAll
         @JvmStatic
         fun setUp() {
             stub = createStub()
+            kafkaMock = KafkaMock.create()
+            kafkaMock.start()
             service = SpringApplication.run(Application::class.java)
         }
 
         @AfterAll
         @JvmStatic
         fun tearDown() {
+            kafkaMock.stop()
             service?.close()
             stub.close()
         }
