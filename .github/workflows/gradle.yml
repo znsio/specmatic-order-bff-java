@@ -18,6 +18,8 @@ jobs:
         java: [8, 17]
     runs-on: ${{ matrix.os }}
     steps:
+    - uses: actions/checkout@v3
+      with: { fetch-depth: 0 }
     - name: Set up JDK ${{ matrix.java }}
       uses: actions/setup-java@v2
       with:
@@ -38,9 +40,6 @@ jobs:
     - name: Publish Specmatic Kafka to Local Maven Repo
       working-directory: specmatic-kafka
       run: ./gradlew publishToMavenLocal
-
-    - name: Checkout Specmatic Order BFF Java Repo
-    - uses: actions/checkout@v3
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
