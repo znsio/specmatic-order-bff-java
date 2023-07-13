@@ -20,6 +20,9 @@ class OrderService {
     @Value("\${order.api}")
     lateinit var orderAPIUrl: String
 
+    @Value("\${kafka.bootstrap-servers}")
+    lateinit var kafkaBootstrapServers: String
+
     fun createOrder(orderRequest: OrderRequest): Int {
         val apiUrl = orderAPIUrl + "/" + API.CREATE_ORDER.url
         val order = Order(orderRequest.productid, orderRequest.count, "pending")
@@ -68,7 +71,8 @@ class OrderService {
 
     private fun publishProductOnKafkaTopic(productMessage: String) {
         val props = Properties()
-        props["bootstrap.servers"] = "localhost:9092"
+        println("kafkaBootstrapServers: $kafkaBootstrapServers")
+        props["bootstrap.servers"] = kafkaBootstrapServers
         props["key.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         props["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         val producer = KafkaProducer<String, String>(props)
