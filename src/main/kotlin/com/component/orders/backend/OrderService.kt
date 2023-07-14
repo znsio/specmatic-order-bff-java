@@ -23,6 +23,9 @@ class OrderService {
     @Value("\${kafka.bootstrap-servers}")
     lateinit var kafkaBootstrapServers: String
 
+    @Value("\${kafka.topic}")
+    lateinit var kafkaTopic: String
+
     fun createOrder(orderRequest: OrderRequest): Int {
         val apiUrl = orderAPIUrl + "/" + API.CREATE_ORDER.url
         val order = Order(orderRequest.productid, orderRequest.count, "pending")
@@ -34,7 +37,7 @@ class OrderService {
             requestEntity,
             String::class.java
         )
-        if(response.body == null) {
+        if (response.body == null) {
             error("No order id received in Order API response.")
         }
         return JSONObject(response.body).getInt("id")
@@ -49,8 +52,10 @@ class OrderService {
 
     fun findProducts(type: String): List<Product> {
         val products = fetchProductsFromBackendAPI(type)
+        val producer = getKafkaProducer()
         products.forEach {
-            publishProductOnKafkaTopic(gson.toJson(ProductMessage(it.id, it.name, it.inventory)))
+            val productMessage = ProductMessage(it.id, it.name, it.inventory)
+            producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
         }
         return products
     }
@@ -69,13 +74,12 @@ class OrderService {
         }
     }
 
-    private fun publishProductOnKafkaTopic(productMessage: String) {
+    private fun getKafkaProducer(): KafkaProducer<String, String> {
         val props = Properties()
         println("kafkaBootstrapServers: $kafkaBootstrapServers")
         props["bootstrap.servers"] = kafkaBootstrapServers
         props["key.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         props["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
-        val producer = KafkaProducer<String, String>(props)
-        producer.send(ProducerRecord("product-queries", productMessage))
+        return KafkaProducer<String, String>(props)
     }
 }
