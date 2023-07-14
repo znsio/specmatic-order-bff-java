@@ -47,7 +47,7 @@ class APITests {
         fun tearDown() {
             service?.close()
             stub.close()
-            kafkaMock.stop()
+            kafkaMock.close()
             // Wait for Kafka server to stop
             Thread.sleep(15000)
         }
