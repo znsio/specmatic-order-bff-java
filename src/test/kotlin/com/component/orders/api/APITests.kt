@@ -6,7 +6,7 @@ import `in`.specmatic.kafka.mock.KafkaMock
 import `in`.specmatic.kafka.mock.model.Expectation
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -23,8 +23,8 @@ class APITests {
     fun `test expectations set on the kafka mock are met`() {
         kafkaMock.awaitMessages(3)
         val result = kafkaMock.verifyExpectations()
-        Assertions.assertThat(result.success).isTrue
-        Assertions.assertThat(result.errors).isEmpty()
+        assertThat(result.success).isTrue
+        assertThat(result.errors).isEmpty()
     }
 
     companion object {

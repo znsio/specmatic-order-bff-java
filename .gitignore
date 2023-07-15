@@ -7,3 +7,5 @@ build/*
 .gradle/*
 .qontract
 js/node_modules
+/kafka-logs/
+/.specmatic/

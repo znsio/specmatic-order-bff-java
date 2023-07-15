@@ -3,24 +3,27 @@
 * [Specmatic Website](https://specmatic.in)
 * [Specmatic Documenation](https://specmatic.in/documentation.html)
 
-This sample project demonstrates how we can practice contract-driven development and contract testing in a SpringBoot (Kotlin) application that depends on an external domain service. Here, specmatic is used to stub calls to domain API service based on its OpenAPI spec.
+This sample project demonstrates how we can practice contract-driven development and contract testing in a SpringBoot (Kotlin) application that depends on an external domain service and Kafka. Here, Specmatic is used to stub calls to domain API service based on its OpenAPI spec and mock Kafka based on its AsyncAPI spec.
 
 Here is the domain api [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/api_order_v1.yaml)
+
+Here is the [AsyncAPI spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/API_order_v1.yaml) of Kafka that defines the topics and message schema.
 
 ## Definitions
 * BFF: Backend for Front End
 * Domain API: API managing the domain model
-* Specmatic Stub Server: Create a server that can replace a real service using its open api spec
+* Specmatic Stub/Mock Server: Create a server that can act as a real service using its OpenAPI or AsyncAPI spec
 
 ## Background
-A typical web application might look like this. We can use Specmatic to practice contract-driven development and test all the components mentioned below. In this sample project, we look at how to do this for SpringBoot BFF which is dependent on Domain API Service demonstrating OpenAPI stubbing support in specmatic.
+A typical web application might look like this. We can use Specmatic to practice contract-driven development and test all the components mentioned below. In this sample project, we look at how to do this for nodejs BFF which is dependent on Domain API Service and Kafka demonstrating both OpenAPI and AsyncAPI support in specmatic.
 
 ![HTML client talks to client API which talks to backend API](assets/specmatic-order-bff-architecture.gif)
 
 ## Tech
 1. Spring boot
 2. Specmatic
-3. Karate
+3. Specmatic Beta extension (for mocking Kafka)
+4. Karate
  
 ## Start BFF Server
 This will start the springboot BFF server
