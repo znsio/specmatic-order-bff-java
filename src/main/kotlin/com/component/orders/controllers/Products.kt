@@ -11,19 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class Products {
-
-    @Autowired
-    lateinit var orderBFFService: OrderBFFService
-
+class Products(@Autowired val orderBFFService: OrderBFFService) {
     @GetMapping("/findAvailableProducts", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun findAvailableProducts(
         @RequestParam(
             name = "type",
             required = true
         ) type: String
-    ): ResponseEntity<List<Product>> {
-        val availableProducts = orderBFFService.findProducts(type)
-        return ResponseEntity(availableProducts, HttpStatus.OK)
-    }
+    ): ResponseEntity<List<Product>> = ResponseEntity(orderBFFService.findProducts(type), HttpStatus.OK)
 }

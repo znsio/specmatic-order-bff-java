@@ -13,7 +13,7 @@ class GlobalExceptionHandler {
     fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
         val errorResponse = ErrorResponse(
             LocalDateTime.now(),
-            HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            HttpStatus.NOT_FOUND.value(),
             "An error occurred while processing the request",
             ex.message ?: "Unknown error"
         )

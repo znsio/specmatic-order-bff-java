@@ -13,7 +13,6 @@ import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 import java.io.File
 
-
 class ContractTests : SpecmaticJUnitSupport() {
 
     companion object {
@@ -70,6 +69,5 @@ class ContractTests : SpecmaticJUnitSupport() {
             Thread.sleep(15000)
         }
     }
-
 }
 

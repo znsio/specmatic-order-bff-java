@@ -12,11 +12,14 @@ import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 
+
 class APITests {
+
     @Karate.Test
     fun apiTests(): Karate {
-        return Karate().path("apiTests.feature").relativeTo(this::class.java)
+        return Karate().path(Companion.KARATE_FEATURE_FILE).relativeTo(this::class.java)
     }
+
     companion object {
         private lateinit var context: ConfigurableApplicationContext
         private lateinit var httpStub: ContractStub
@@ -59,5 +62,7 @@ class APITests {
             // Wait for Kafka server to stop
             Thread.sleep(15000)
         }
+
+        private const val KARATE_FEATURE_FILE = "apiTests.feature"
     }
 }
