@@ -9,39 +9,44 @@ import `in`.specmatic.test.SpecmaticJUnitSupport
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 import java.io.File
 
-class ContractTests: SpecmaticJUnitSupport() {
+
+class ContractTests : SpecmaticJUnitSupport() {
 
     companion object {
-        private var context: ConfigurableApplicationContext? = null
-        private lateinit var stub: ContractStub
+        private lateinit var context: ConfigurableApplicationContext
+        private lateinit var httpStub: ContractStub
         private lateinit var kafkaMock: KafkaMock
-        private const val SPECMATIC_TEST_HOST = "localhost"
-        private const val SPECMATIC_TEST_PORT = "8080"
-        private const val SPECMATIC_STUB_HOST = "localhost"
-        private const val SPECMATIC_STUB_PORT = 9000
-        private const val ACTUTATOR_MAPPINGS_ENDPOINT = "http://$SPECMATIC_TEST_HOST:$SPECMATIC_TEST_PORT/actuator/mappings"
+        private const val APPLICATION_HOST = "localhost"
+        private const val APPLICATION_PORT = "8080"
+        private const val HTTP_STUB_HOST = "localhost"
+        private const val HTTP_STUB_PORT = 9000
+        private const val KAFKA_MOCK_PORT = 9092
+        private const val ACTUATOR_MAPPINGS_ENDPOINT =
+            "http://$APPLICATION_HOST:$APPLICATION_PORT/actuator/mappings"
+        private const val EXPECTED_NUMBER_OF_MESSAGES = 3
 
         @JvmStatic
         @BeforeAll
         fun setUp() {
-            System.setProperty("host", SPECMATIC_TEST_HOST)
-            System.setProperty("port", SPECMATIC_TEST_PORT)
-            System.setProperty("endpointsAPI", ACTUTATOR_MAPPINGS_ENDPOINT)
+            System.setProperty("host", APPLICATION_HOST)
+            System.setProperty("port", APPLICATION_PORT)
+            System.setProperty("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
 
-            stub = createStub(SPECMATIC_STUB_HOST, SPECMATIC_STUB_PORT)
-
+            // Start Specmatic Http Stub and set the expectations
+            httpStub = createStub(HTTP_STUB_HOST, HTTP_STUB_PORT)
             val expectationJsonString = File("./src/test/resources/expectation.json").readText()
-            stub.setExpectation(expectationJsonString)
+            httpStub.setExpectation(expectationJsonString)
 
-            kafkaMock = KafkaMock.create()
+            // Start Specmatic Kafka Mock and set the expectations
+            kafkaMock = KafkaMock.create(KAFKA_MOCK_PORT)
             kafkaMock.start()
-            kafkaMock.setExpectations(listOf(Expectation("product-queries", 3)))
+            kafkaMock.setExpectations(listOf(Expectation("product-queries", EXPECTED_NUMBER_OF_MESSAGES)))
 
+            // Start Springboot application
             val springApp = SpringApplication(Application::class.java)
             context = springApp.run()
         }
@@ -49,20 +54,22 @@ class ContractTests: SpecmaticJUnitSupport() {
         @JvmStatic
         @AfterAll
         fun tearDown() {
-            context!!.close()
-            stub.close()
+            // Shutdown Springboot application
+            context.close()
+
+            // Shutdown Specmatic Http Stub
+            httpStub.close()
+
+            // Verify Specmatic Kafka mock and shutdown
+            kafkaMock.awaitMessages(3)
+            val result = kafkaMock.verifyExpectations()
+            assertThat(result.success).isTrue
+            assertThat(result.errors).isEmpty()
             kafkaMock.close()
             // Wait for Kafka server to stop
             Thread.sleep(15000)
         }
     }
 
-    @Test
-    fun `test expectations set on the kafka mock are met`() {
-        kafkaMock.awaitMessages(3)
-        val result = kafkaMock.verifyExpectations()
-        assertThat(result.success).isTrue
-        assertThat(result.errors).isEmpty()
-    }
 }
 
