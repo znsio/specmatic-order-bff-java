@@ -50,10 +50,10 @@ dependencies {
     implementation 'org.apache.kafka:kafka-clients:2.8.0'
     implementation("com.google.code.gson:gson:2.10.1")
 
-    implementation('in.specmatic:specmatic-core:0.80.1') {
+    implementation('in.specmatic:specmatic-core:0.81.0') {
         exclude group: 'org.apache.kafka', module: 'kafka-clients'
     }
-    implementation('in.specmatic:junit5-support:0.80.1') {
+    implementation('in.specmatic:junit5-support:0.81.0') {
         exclude group: 'org.apache.kafka', module: 'kafka-clients'
     }
     testImplementation(
