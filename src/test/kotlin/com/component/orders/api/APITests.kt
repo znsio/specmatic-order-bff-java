@@ -26,6 +26,7 @@ class APITests {
         private lateinit var kafkaMock: KafkaMock
         private const val HTTP_STUB_HOST = "localhost"
         private const val HTTP_STUB_PORT = 9000
+        private const val KAFKA_MOCK_HOST = "localhost"
         private const val KAFKA_MOCK_PORT = 9092
         private const val EXPECTED_NUMBER_OF_MESSAGES = 3
 
@@ -36,7 +37,7 @@ class APITests {
             httpStub = createStub(HTTP_STUB_HOST, HTTP_STUB_PORT)
 
             // Start Specmatic Kafka Mock and set the expectations
-            kafkaMock = KafkaMock.create(KAFKA_MOCK_PORT)
+            kafkaMock = KafkaMock.create(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)
             kafkaMock.start()
             kafkaMock.setExpectations(listOf(Expectation("product-queries", EXPECTED_NUMBER_OF_MESSAGES)))
 
