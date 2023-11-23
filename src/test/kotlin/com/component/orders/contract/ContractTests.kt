@@ -42,8 +42,7 @@ class ContractTests : SpecmaticJUnitSupport() {
             httpStub.setExpectation(expectationJsonString)
 
             // Start Specmatic Kafka Mock and set the expectations
-            kafkaMock = KafkaMock.create(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)
-            kafkaMock.start()
+            kafkaMock = KafkaMock.startInMemoryBroker(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)
             kafkaMock.setExpectations(listOf(Expectation("product-queries", EXPECTED_NUMBER_OF_MESSAGES)))
 
             // Start Springboot application
