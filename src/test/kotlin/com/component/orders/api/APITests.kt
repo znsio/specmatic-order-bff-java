@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 
-
 class APITests {
 
     @Karate.Test

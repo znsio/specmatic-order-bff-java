@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id "org.jetbrains.kotlin.jvm" version "1.9.20"
-	id 'org.springframework.boot' version '2.7.11'
-	id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.21'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.21'
     id 'jacoco'
 }
 
@@ -20,7 +20,7 @@ repositories {
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
@@ -32,26 +32,22 @@ jacocoTestReport {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.2.4.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-test:2.2.4.RELEASE'
-    implementation ('com.intuit.karate:karate-junit5:1.3.1') {
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-test:3.2.0'
+    implementation('com.intuit.karate:karate-junit5:1.3.1') {
         exclude group: 'io.netty'
     }
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.2.4.RELEASE'
-    implementation ('in.specmatic:specmatic-kafka:0.13.0') {
-        exclude group: 'org.springframework.boot'
-        exclude group: 'org.apache.tomcat.embed'
-    }
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.0'
     implementation 'org.apache.kafka:kafka-clients:2.8.0'
     implementation("com.google.code.gson:gson:2.10.1")
 
-    implementation('in.specmatic:specmatic-core:1.0.0') {
-        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    implementation('in.specmatic:specmatic-kafka:0.13.0') {
+        exclude group: 'org.springframework.boot'
+        exclude group: 'org.apache.tomcat.embed'
     }
-    implementation('in.specmatic:junit5-support:1.0.0') {
-        exclude group: 'org.apache.kafka', module: 'kafka-clients'
-    }
+    implementation('in.specmatic:junit5-support:1.0.2')
+    implementation('in.specmatic:specmatic-core:1.0.2')
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.9.3'
@@ -79,8 +75,12 @@ test {
 
 group = 'in.specmatic.sample'
 version = '1.0'
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
 
 configurations {
-
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+    }
 }
