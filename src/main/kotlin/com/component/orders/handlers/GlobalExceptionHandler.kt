@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.ResourceAccessException
 import java.time.LocalDateTime
 
@@ -13,8 +14,8 @@ class GlobalExceptionHandler {
     @ExceptionHandler(Exception::class)
     fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
         val (httpStatus, message) = when(ex) {
-            is ResourceAccessException -> Pair(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while processing the request")
-            else -> Pair(HttpStatus.NOT_FOUND, "Not found")
+            is HttpClientErrorException -> Pair(ex.statusCode, "An error occurred while processing the request")
+            else -> Pair(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error")
         }
 
         val errorResponse = ErrorResponse(
@@ -23,7 +24,7 @@ class GlobalExceptionHandler {
             message,
             ex.message ?: "Unknown error"
         )
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse)
+        return ResponseEntity.status(httpStatus).body(errorResponse)
     }
 }
 

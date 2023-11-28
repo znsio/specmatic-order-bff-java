@@ -61,15 +61,15 @@ class OrderService {
     }
 
     private fun fetchProductsFromBackendAPI(type: String): List<Product> {
-        val apiUrl = orderAPIUrl + "/" + API.FIND_PRODUCTS.url + "?type=$type"
+        val apiUrl = orderAPIUrl + "/" + API.LIST_PRODUCTS.url + "?type=$type"
         val response = RestTemplate().getForEntity(apiUrl, List::class.java)
         return response.body.map {
             val product = it as Map<*, *>
             Product(
-                product["id"].toString().toInt(),
                 product["name"].toString(),
+                product["type"].toString(),
                 product["inventory"].toString().toInt(),
-                product["type"].toString()
+                product["id"].toString().toInt(),
             )
         }
     }
@@ -81,5 +81,22 @@ class OrderService {
         props["key.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         props["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         return KafkaProducer<String, String>(props)
+    }
+
+    fun createProduct(newProduct: NewProduct): Int {
+        val apiUrl = orderAPIUrl + "/" + API.CREATE_PRODUCTS.url
+        val headers = getHeaders()
+        val requestEntity = HttpEntity(newProduct, headers)
+        val response = RestTemplate().exchange(
+            apiUrl,
+            API.CREATE_PRODUCTS.method,
+            requestEntity,
+            String::class.java
+        )
+        if (response.body == null) {
+            error("No product id received in Product API response.")
+        }
+        return JSONObject(response.body).getInt("id")
+
     }
 }
