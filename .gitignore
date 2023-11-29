@@ -9,3 +9,5 @@ build/*
 js/node_modules
 /kafka-logs/
 /.specmatic/
+.vscode/*
+bin/*
