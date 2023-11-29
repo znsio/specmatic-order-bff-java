@@ -7,10 +7,14 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.*
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
+import org.springframework.http.client.SimpleClientHttpRequestFactory
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.util.*
+
 
 @Service
 class OrderService {
@@ -78,7 +82,12 @@ class OrderService {
 
     private fun fetchProductsFromBackendAPI(type: String): List<Product> {
         val apiUrl = orderAPIUrl + "/" + API.LIST_PRODUCTS.url + "?type=$type"
-        val response = RestTemplate().getForEntity(apiUrl, List::class.java)
+        val restTemplate = RestTemplate()
+        val requestFactory = SimpleClientHttpRequestFactory()
+        requestFactory.setConnectTimeout(3000)
+        requestFactory.setReadTimeout(3000)
+        restTemplate.setRequestFactory(requestFactory)
+        val response = restTemplate.getForEntity(apiUrl, List::class.java)
         return response.body.map {
             val product = it as Map<*, *>
             Product(

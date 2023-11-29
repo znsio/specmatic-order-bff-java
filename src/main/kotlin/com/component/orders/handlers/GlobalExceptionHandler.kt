@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.client.ResourceAccessException
 import java.time.LocalDateTime
 
 @ControllerAdvice
@@ -11,7 +12,9 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception::class)
     fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
-        val badRequest = HttpStatus.BAD_REQUEST
+        var badRequest = HttpStatus.BAD_REQUEST
+        if (ex is ResourceAccessException)
+            badRequest = HttpStatus.SERVICE_UNAVAILABLE
         val errorResponse = ErrorResponse(
             LocalDateTime.now(),
             badRequest.value(),
