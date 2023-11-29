@@ -4,7 +4,9 @@ import com.component.orders.models.OrderRequest
 import com.component.orders.models.OrderResponse
 import com.component.orders.services.OrderBFFService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -12,5 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class Orders(@Autowired val orderBFFService: OrderBFFService) {
     @PostMapping("/orders", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun createOrder(@RequestBody orderRequest: OrderRequest): OrderResponse = orderBFFService.createOrder(orderRequest)
+    fun createOrder(@RequestBody orderRequest: OrderRequest): ResponseEntity<OrderResponse> =
+        ResponseEntity(orderBFFService.createOrder(orderRequest), HttpStatus.CREATED)
 }
