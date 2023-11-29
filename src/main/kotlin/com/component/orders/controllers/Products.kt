@@ -21,7 +21,8 @@ class Products(@Autowired val orderBFFService: OrderBFFService) {
     fun findAvailableProducts(
         @RequestParam(
             name = "type",
-            required = true
+            required = false,
+            defaultValue = "gadget"
         ) type: String,
         @RequestHeader(
             name = "pageSize",
