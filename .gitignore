@@ -11,3 +11,4 @@ js/node_modules
 /.specmatic/
 .vscode/*
 bin/*
+build/reports/specmatic/
