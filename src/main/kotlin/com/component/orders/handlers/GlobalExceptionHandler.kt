@@ -10,16 +10,16 @@ import java.time.LocalDateTime
 @ControllerAdvice
 class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception::class)
-    fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
-        val errorResponse = ErrorResponse(
-            LocalDateTime.now(),
-            HttpStatus.NOT_FOUND.value(),
-            "An error occurred while processing the request",
-            ex.message ?: "Unknown error"
-        )
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse)
-    }
+//    @ExceptionHandler(Exception::class)
+//    fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
+//        val errorResponse = ErrorResponse(
+//            LocalDateTime.now(),
+//            HttpStatus.NOT_FOUND.value(),
+//            "An error occurred while processing the request",
+//            ex.message ?: "Unknown error"
+//        )
+//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse)
+//    }
 }
 
 data class ErrorResponse(

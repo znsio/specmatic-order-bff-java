@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -21,8 +22,15 @@ class Products(@Autowired val orderBFFService: OrderBFFService) {
         @RequestParam(
             name = "type",
             required = true
-        ) type: String
-    ): ResponseEntity<List<Product>> = ResponseEntity(orderBFFService.findProducts(type), HttpStatus.OK)
+        ) type: String,
+        @RequestHeader(
+            name = "pageSize",
+            required = true
+        ) pageSize: Int
+    ): ResponseEntity<List<Product>> {
+        if (pageSize < 0) throw IllegalArgumentException("pageSize must be positive")
+        return ResponseEntity(orderBFFService.findProducts(type), HttpStatus.OK)
+    }
 
     @PostMapping("/products", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun createProduct(
