@@ -1,7 +1,6 @@
 package com.component.orders.models
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
-import java.util.concurrent.atomic.AtomicInteger
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Positive
 

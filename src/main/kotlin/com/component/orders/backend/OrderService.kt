@@ -14,7 +14,7 @@ import java.util.*
 
 @Service
 class OrderService {
-    private val AUTHENTICATE_TOKEN = "API-TOKEN-HARI"
+    private val authToken = "API-TOKEN-SPEC"
     private val gson = Gson()
 
     @Value("\${order.api}")
@@ -43,13 +43,6 @@ class OrderService {
         return JSONObject(response.body).getInt("id")
     }
 
-    private fun getHeaders(): HttpHeaders {
-        val headers = HttpHeaders()
-        headers.contentType = MediaType.APPLICATION_JSON
-        headers.set("Authenticate", AUTHENTICATE_TOKEN)
-        return headers
-    }
-
     fun findProducts(type: String): List<Product> {
         val products = fetchProductsFromBackendAPI(type)
         val producer = getKafkaProducer()
@@ -58,6 +51,29 @@ class OrderService {
             producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
         }
         return products
+    }
+
+    fun createProduct(newProduct: NewProduct): Int {
+        val apiUrl = orderAPIUrl + "/" + API.CREATE_PRODUCTS.url
+        val headers = getHeaders()
+        val requestEntity = HttpEntity(newProduct, headers)
+        val response = RestTemplate().exchange(
+            apiUrl,
+            API.CREATE_PRODUCTS.method,
+            requestEntity,
+            String::class.java
+        )
+        if (response.body == null) {
+            error("No product id received in Product API response.")
+        }
+        return JSONObject(response.body).getInt("id")
+    }
+
+    private fun getHeaders(): HttpHeaders {
+        val headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+        headers.set("Authenticate", authToken)
+        return headers
     }
 
     private fun fetchProductsFromBackendAPI(type: String): List<Product> {
@@ -81,22 +97,5 @@ class OrderService {
         props["key.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         props["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
         return KafkaProducer<String, String>(props)
-    }
-
-    fun createProduct(newProduct: NewProduct): Int {
-        val apiUrl = orderAPIUrl + "/" + API.CREATE_PRODUCTS.url
-        val headers = getHeaders()
-        val requestEntity = HttpEntity(newProduct, headers)
-        val response = RestTemplate().exchange(
-            apiUrl,
-            API.CREATE_PRODUCTS.method,
-            requestEntity,
-            String::class.java
-        )
-        if (response.body == null) {
-            error("No product id received in Product API response.")
-        }
-        return JSONObject(response.body).getInt("id")
-
     }
 }

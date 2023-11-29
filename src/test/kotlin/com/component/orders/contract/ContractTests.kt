@@ -62,6 +62,9 @@ class ContractTests : SpecmaticJUnitSupport() {
             // Verify Specmatic Kafka mock and shutdown
             kafkaMock.awaitMessages(3)
             val result = kafkaMock.verifyExpectations()
+            if(!result.success) {
+                println(result.errors)
+            }
             assertThat(result.success).isTrue
             assertThat(result.errors).isEmpty()
             kafkaMock.close()

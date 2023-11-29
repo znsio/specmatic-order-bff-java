@@ -16,7 +16,7 @@ class APITests {
 
     @Karate.Test
     fun apiTests(): Karate {
-        return Karate().path(Companion.KARATE_FEATURE_FILE).relativeTo(this::class.java)
+        return Karate().path(KARATE_FEATURE_FILE).relativeTo(this::class.java)
     }
 
     companion object {
