@@ -13,7 +13,7 @@ class OrderBFFService {
 
     fun createOrder(orderRequest: OrderRequest): OrderResponse {
         val orderId = orderService.createOrder(orderRequest)
-        return OrderResponse(id = orderId, status = "success")
+        return OrderResponse(id = orderId)
     }
 
     fun findProducts(type: String): List<Product> {
