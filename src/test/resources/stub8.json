@@ -1,0 +1,42 @@
+{
+    "http-request": {
+        "path": "/products",
+        "method": "POST",
+        "headers": {
+            "Accept": "text/plain, application/json, application/*+json, */*",
+            "Content-Type": "application/json",
+            "Authenticate": "API-TOKEN-SPEC",
+            "User-Agent": "Java/17.0.2",
+            "Host": "localhost:9000",
+            "Connection": "keep-alive",
+            "Transfer-Encoding": "chunked"
+        },
+        "body": {
+            "name": "Harry Potter",
+            "type": "book",
+            "inventory": 0
+        }
+    },
+    "http-response": {
+        "status": 400,
+        "body": {
+            "timestamp": "2023-11-30T11:27:00.909884",
+            "status": 400,
+            "error": "An error occurred while processing the request",
+            "message": "Validation failed for argument [0] in public final org.springframework.http.ResponseEntity<com.store.model.Id> com.store.controllers.Products.create(com.store.model.Product,com.store.model.User): [Field error in object 'product' on field 'inventory': rejected value [0]; codes [Positive.product.inventory,Positive.inventory,Positive.int,Positive]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.inventory,inventory]; arguments []; default message [inventory]]; default message [must be greater than 0]] "
+        },
+        "status-text": "Bad Request",
+        "headers": {
+            "X-Content-Type-Options": "nosniff",
+            "X-XSS-Protection": "1; mode=block",
+            "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+            "Pragma": "no-cache",
+            "Expires": "0",
+            "X-Frame-Options": "DENY",
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Thu, 30 Nov 2023 00:27:00 GMT",
+            "Connection": "close"
+        }
+    }
+}

@@ -12,3 +12,4 @@ js/node_modules
 .vscode/*
 bin/*
 build/reports/specmatic/
+/recordings_backup/
