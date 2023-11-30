@@ -48,8 +48,8 @@ dependencies {
         exclude group: 'org.springframework.boot'
         exclude group: 'org.apache.tomcat.embed'
     }
-    implementation('in.specmatic:junit5-support:1.0.2')
-    implementation('in.specmatic:specmatic-core:1.0.2')
+    implementation('in.specmatic:junit5-support:1.0.3')
+    implementation('in.specmatic:specmatic-core:1.0.3')
 
     implementation 'javax.validation:validation-api:2.0.1.Final'
 

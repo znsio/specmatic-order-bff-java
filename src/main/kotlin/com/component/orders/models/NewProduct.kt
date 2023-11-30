@@ -7,5 +7,5 @@ import javax.validation.constraints.Positive
 data class NewProduct(
     @field:NotNull @field:JsonDeserialize(using = StrictStringDeserializer::class) val name: String = "",
     @field:NotNull val type: String = "gadget",
-    @field:Positive val inventory: Int = 0
+    @field:NotNull @field:Positive val inventory: Int? = 1
 )
