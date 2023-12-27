@@ -47,7 +47,7 @@ dependencies {
         exclude group: 'org.apache.tomcat.embed'
     }
     implementation('in.specmatic:junit5-support:1.0.4')
-    implementation('in.specmatic:specmatic-core:1.0.4')
+    implementation('in.specmatic:specmatic-core:1.2.0')
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'
