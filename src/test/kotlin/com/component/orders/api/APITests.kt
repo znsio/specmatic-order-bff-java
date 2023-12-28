@@ -24,7 +24,7 @@ class APITests {
         private lateinit var httpStub: ContractStub
         private lateinit var kafkaMock: KafkaMock
         private const val HTTP_STUB_HOST = "localhost"
-        private const val HTTP_STUB_PORT = 9000
+        private const val HTTP_STUB_PORT = 8090
         private const val KAFKA_MOCK_HOST = "localhost"
         private const val KAFKA_MOCK_PORT = 9092
         private const val EXPECTED_NUMBER_OF_MESSAGES = 3
@@ -55,11 +55,10 @@ class APITests {
             // Verify Specmatic Kafka mock and shutdown
             kafkaMock.awaitMessages(EXPECTED_NUMBER_OF_MESSAGES)
             val result = kafkaMock.verifyExpectations()
-            assertThat(result.success).isTrue
-            assertThat(result.errors).isEmpty()
+            assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue
             kafkaMock.close()
             // Wait for Kafka server to stop
-            Thread.sleep(15000)
+            Thread.sleep(5000)
         }
 
         private const val KARATE_FEATURE_FILE = "apiTests.feature"

@@ -1,0 +1,52 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/products",
+    "query": {
+      "type": "gadget"
+    },
+    "headers": {
+      "Accept": "application/json, application/*+json",
+      "User-Agent": "Java/17.0.7",
+      "Host": "localhost:8090",
+      "Connection": "keep-alive"
+    }
+  },
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "name": "Iphone",
+        "inventory": 10,
+        "type": "gadget"
+      },
+      {
+        "id": 2,
+        "name": "Macbook",
+        "inventory": 40,
+        "type": "gadget"
+      },
+      {
+        "id": 31,
+        "name": "Ipad",
+        "inventory": 20,
+        "type": "gadget"
+      }
+    ],
+    "status-text": "OK",
+    "headers": {
+      "X-Content-Type-Options": "nosniff",
+      "X-XSS-Protection": "1; mode=block",
+      "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
+      "Pragma": "no-cache",
+      "Expires": "0",
+      "X-Frame-Options": "DENY",
+      "Content-Type": "application/json",
+      "Transfer-Encoding": "chunked",
+      "Date": "Thu, 30 Nov 2023 00:27:00 GMT",
+      "Keep-Alive": "timeout=60",
+      "Connection": "keep-alive"
+    }
+  }
+}

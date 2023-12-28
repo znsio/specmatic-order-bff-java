@@ -6,8 +6,8 @@
             "Accept": "text/plain, application/json, application/*+json, */*",
             "Content-Type": "application/json",
             "Authenticate": "API-TOKEN-SPEC",
-            "User-Agent": "Java/17.0.2",
-            "Host": "localhost:9000",
+            "User-Agent": "Java/17.0.7",
+            "Host": "localhost:8090",
             "Connection": "keep-alive",
             "Transfer-Encoding": "chunked"
         },

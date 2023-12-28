@@ -6,6 +6,7 @@ import `in`.specmatic.kafka.mock.model.Expectation
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
 import `in`.specmatic.test.SpecmaticJUnitSupport
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.SpringApplication
@@ -20,7 +21,7 @@ class ContractTests : SpecmaticJUnitSupport() {
         private const val APPLICATION_HOST = "localhost"
         private const val APPLICATION_PORT = "8080"
         private const val HTTP_STUB_HOST = "localhost"
-        private const val HTTP_STUB_PORT = 9000
+        private const val HTTP_STUB_PORT = 8090
         private const val KAFKA_MOCK_HOST = "localhost"
         private const val KAFKA_MOCK_PORT = 9092
         private const val ACTUATOR_MAPPINGS_ENDPOINT =
@@ -37,7 +38,7 @@ class ContractTests : SpecmaticJUnitSupport() {
 
             // Start Specmatic Http Stub and set the expectations
             httpStub = createStub(listOf("./src/test/resources"), HTTP_STUB_HOST, HTTP_STUB_PORT)
-        
+
             // Start Specmatic Kafka Mock and set the expectations
             kafkaMock = KafkaMock.startInMemoryBroker(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)
             kafkaMock.setExpectations(listOf(Expectation("product-queries", EXPECTED_NUMBER_OF_MESSAGES)))
@@ -59,14 +60,13 @@ class ContractTests : SpecmaticJUnitSupport() {
             // Verify Specmatic Kafka mock and shutdown
             kafkaMock.awaitMessages(3)
             val result = kafkaMock.verifyExpectations()
-            if(!result.success) {
+            if (!result.success) {
                 println(result.errors)
             }
-//            assertThat(result.success).isTrue
-//            assertThat(result.errors).isEmpty()
+            assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue
             kafkaMock.close()
             // Wait for Kafka server to stop
-            Thread.sleep(15000)
+            Thread.sleep(5000)
         }
     }
 }
