@@ -49,11 +49,7 @@ Feature: Tests
           "headers": {
             "Accept": "text/plain, application/json, application/*+json, */*",
             "Content-Type": "application/json",
-            "Authenticate": "API-TOKEN-SPEC",
-            "User-Agent": "Java/17.0.7",
-            "Host": "localhost:8090",
-            "Connection": "keep-alive",
-            "Transfer-Encoding": "chunked"
+            "Authenticate": "API-TOKEN-SPEC"
           },
           "body": {
             "productid": 10,
@@ -68,19 +64,6 @@ Feature: Tests
             "id": 10
           },
           "status-text": "OK",
-          "headers": {
-            "X-Content-Type-Options": "nosniff",
-            "X-XSS-Protection": "1; mode=block",
-            "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
-            "Pragma": "no-cache",
-            "Expires": "0",
-            "X-Frame-Options": "DENY",
-            "Content-Type": "application/json",
-            "Transfer-Encoding": "chunked",
-            "Date": "Thu, 30 Nov 2023 00:26:58 GMT",
-            "Keep-Alive": "timeout=60",
-            "Connection": "keep-alive"
-          }
         }
       }
     """
