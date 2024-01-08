@@ -1,0 +1,21 @@
+{
+    "http-request": {
+        "path": "/products",
+        "method": "POST",
+        "headers": {
+            "Authenticate": "API-TOKEN-SPEC"
+        },
+        "body": {
+            "name": "Harry Potter",
+            "type": "gadget",
+            "inventory": 50
+        }
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "id": 48
+        },
+        "status-text": "OK"
+    }
+}

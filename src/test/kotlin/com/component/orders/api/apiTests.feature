@@ -2,14 +2,15 @@ Feature: Tests
 
   Scenario: Search for available products
     # Arrange - setup expectations with Specmatic Http Stub
-    * def expectationJson = karate.read('classpath:expectation.json')
-    Given url 'http://localhost:9000/_specmatic/expectations'
+    * def expectationJson = karate.read('classpath:stub_products_200.json')
+    Given url 'http://localhost:8090/_specmatic/expectations'
     And request expectationJson
     When method post
     Then status 200
 
     # Act - make the actual call to the service
     Given url 'http://localhost:8080/findAvailableProducts?type=gadget'
+    And header pageSize = 10
     When method get
 
     # Assert - status and response body
@@ -18,40 +19,27 @@ Feature: Tests
 
   Scenario Outline: Search for available products - Error condition
     # Arrange - simulate error by setting expectation with empty response body
-    Given url 'http://localhost:9000/_specmatic/expectations'
-    And request
-    """
-      {
-        "http-request": {
-          "method": "GET",
-          "path": "/products",
-          "query": {
-            "type": "book"
-          }
-        },
-        "http-response": {
-          "status": 500,
-          "body": ""
-        }
-      }
-    """
+    * def expectationJsonForErrorCondition = karate.read('classpath:stub timeout.json')
+    Given url 'http://localhost:8090/_specmatic/expectations'
+    And request expectationJsonForErrorCondition
     When method post
     Then status 200
 
     # Act - make the actual call to the service
     Given url 'http://localhost:8080/findAvailableProducts?type=' + <productType>
+    And header pageSize = 10
     When method get
 
     # Assert
-    Then status 404
+    Then status 503
 
     Examples:
       | productType |
-      | "book"      |
+      | "other"      |
 
   Scenario Outline: Create order
     # Arrange - setup expectations with Specmatic Http Stub
-    Given url 'http://localhost:9000/_specmatic/expectations'
+    Given url 'http://localhost:8090/_specmatic/expectations'
     And request
     """
       {
@@ -59,7 +47,7 @@ Feature: Tests
           "method": "POST",
           "path": "/orders",
           "headers": {
-            "Authenticate": "(string)"
+            "Authenticate": "API-TOKEN-SPEC"
           },
           "body": {
             "productid": 10,
@@ -72,7 +60,8 @@ Feature: Tests
           "status": 200,
           "body": {
             "id": 10
-          }
+          },
+          "status-text": "OK",
         }
       }
     """
@@ -85,10 +74,9 @@ Feature: Tests
     When method post
 
     # Assert
-    Then status 200
-    And assert response["status"] == <status>
+    Then status 201
     And assert response["id"] == <productId>
 
     Examples:
-      | productId | count | status    |
-      | 10        | 1     | "success" |
+      | productId | count |
+      | 10        | 1     |

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.9.21'
@@ -18,7 +20,7 @@ repositories {
     }
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -39,15 +41,15 @@ dependencies {
     }
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.0'
-    implementation 'org.apache.kafka:kafka-clients:2.8.0'
+    implementation 'org.apache.kafka:kafka-clients:3.6.0'
     implementation("com.google.code.gson:gson:2.10.1")
 
-    implementation('in.specmatic:specmatic-kafka:0.13.0') {
+    implementation('in.specmatic:specmatic-kafka:0.15.0') {
         exclude group: 'org.springframework.boot'
         exclude group: 'org.apache.tomcat.embed'
     }
-    implementation('in.specmatic:junit5-support:1.0.4')
-    implementation('in.specmatic:specmatic-core:1.0.4')
+    implementation('in.specmatic:junit5-support:1.2.4')
+    implementation 'javax.validation:validation-api:2.0.1.Final'
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'
@@ -69,7 +71,6 @@ test {
     useJUnitPlatform {
         includeEngines("junit-jupiter")
     }
-
     testLogging.showStandardStreams = true
 }
 

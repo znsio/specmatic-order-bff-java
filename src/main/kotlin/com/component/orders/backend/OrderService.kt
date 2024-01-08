@@ -7,14 +7,18 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.*
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
+import org.springframework.http.client.SimpleClientHttpRequestFactory
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.util.*
 
+
 @Service
 class OrderService {
-    private val AUTHENTICATE_TOKEN = "API-TOKEN-HARI"
+    private val authToken = "API-TOKEN-SPEC"
     private val gson = Gson()
 
     @Value("\${order.api}")
@@ -43,13 +47,6 @@ class OrderService {
         return JSONObject(response.body).getInt("id")
     }
 
-    private fun getHeaders(): HttpHeaders {
-        val headers = HttpHeaders()
-        headers.contentType = MediaType.APPLICATION_JSON
-        headers.set("Authenticate", AUTHENTICATE_TOKEN)
-        return headers
-    }
-
     fun findProducts(type: String): List<Product> {
         val products = fetchProductsFromBackendAPI(type)
         val producer = getKafkaProducer()
@@ -60,16 +57,44 @@ class OrderService {
         return products
     }
 
+    fun createProduct(newProduct: NewProduct): Int {
+        val apiUrl = orderAPIUrl + "/" + API.CREATE_PRODUCTS.url
+        val headers = getHeaders()
+        val requestEntity = HttpEntity(newProduct, headers)
+        val response = RestTemplate().exchange(
+            apiUrl,
+            API.CREATE_PRODUCTS.method,
+            requestEntity,
+            String::class.java
+        )
+        if (response.body == null) {
+            error("No product id received in Product API response.")
+        }
+        return JSONObject(response.body).getInt("id")
+    }
+
+    private fun getHeaders(): HttpHeaders {
+        val headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+        headers.set("Authenticate", authToken)
+        return headers
+    }
+
     private fun fetchProductsFromBackendAPI(type: String): List<Product> {
-        val apiUrl = orderAPIUrl + "/" + API.FIND_PRODUCTS.url + "?type=$type"
-        val response = RestTemplate().getForEntity(apiUrl, List::class.java)
+        val apiUrl = orderAPIUrl + "/" + API.LIST_PRODUCTS.url + "?type=$type"
+        val restTemplate = RestTemplate()
+        val requestFactory = SimpleClientHttpRequestFactory()
+        requestFactory.setConnectTimeout(3000)
+        requestFactory.setReadTimeout(3000)
+        restTemplate.setRequestFactory(requestFactory)
+        val response = restTemplate.getForEntity(apiUrl, List::class.java)
         return response.body.map {
             val product = it as Map<*, *>
             Product(
-                product["id"].toString().toInt(),
                 product["name"].toString(),
+                product["type"].toString(),
                 product["inventory"].toString().toInt(),
-                product["type"].toString()
+                product["id"].toString().toInt(),
             )
         }
     }

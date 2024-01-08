@@ -1,0 +1,24 @@
+{
+    "http-request": {
+        "path": "/products",
+        "method": "POST",
+        "headers": {
+            "Authenticate": "API-TOKEN-SPEC"
+        },
+        "body": {
+            "name": "Harry Potter",
+            "type": "food",
+            "inventory": 0
+        }
+    },
+    "http-response": {
+        "status": 400,
+        "body": {
+            "timestamp": "2023-11-30T11:27:01.011373",
+            "status": 400,
+            "error": "An error occurred while processing the request",
+            "message": "Validation failed for argument [0] in public final org.springframework.http.ResponseEntity<com.store.model.Id> com.store.controllers.Products.create(com.store.model.Product,com.store.model.User): [Field error in object 'product' on field 'inventory': rejected value [0]; codes [Positive.product.inventory,Positive.inventory,Positive.int,Positive]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.inventory,inventory]; arguments []; default message [inventory]]; default message [must be greater than 0]] "
+        },
+        "status-text": "Bad Request"
+    }
+}

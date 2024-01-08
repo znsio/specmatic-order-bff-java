@@ -1,0 +1,70 @@
+{
+    "http-request": {
+        "path": "/products",
+        "method": "GET",
+        "query": {
+            "type": "book"
+        },
+        "body": ""
+    },
+    "http-response": {
+        "status": 200,
+        "body": [
+            {
+                "name": "EXMRO",
+                "type": "book",
+                "inventory": 302,
+                "id": 1
+            },
+            {
+                "name": "AWADS",
+                "type": "book",
+                "inventory": 917,
+                "id": 5
+            },
+            {
+                "name": "EVFGX",
+                "type": "book",
+                "inventory": 410,
+                "id": 9
+            },
+            {
+                "name": "AWPNJ",
+                "type": "book",
+                "inventory": 555,
+                "id": 13
+            },
+            {
+                "name": "Harry Potter",
+                "type": "book",
+                "inventory": 50,
+                "id": 16
+            },
+            {
+                "name": "Harry Potter",
+                "type": "book",
+                "inventory": 50,
+                "id": 17
+            },
+            {
+                "name": "Harry Potter",
+                "type": "book",
+                "inventory": 50,
+                "id": 27
+            },
+            {
+                "name": "Harry Potter",
+                "type": "book",
+                "inventory": 50,
+                "id": 37
+            },
+            {
+                "name": "Harry Potter",
+                "type": "book",
+                "inventory": 50,
+                "id": 47
+            }
+        ],
+        "status-text": "OK"
+    }
+}

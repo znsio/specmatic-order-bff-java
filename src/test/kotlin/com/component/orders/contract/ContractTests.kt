@@ -11,7 +11,6 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
-import java.io.File
 
 class ContractTests : SpecmaticJUnitSupport() {
 
@@ -22,7 +21,7 @@ class ContractTests : SpecmaticJUnitSupport() {
         private const val APPLICATION_HOST = "localhost"
         private const val APPLICATION_PORT = "8080"
         private const val HTTP_STUB_HOST = "localhost"
-        private const val HTTP_STUB_PORT = 9000
+        private const val HTTP_STUB_PORT = 8090
         private const val KAFKA_MOCK_HOST = "localhost"
         private const val KAFKA_MOCK_PORT = 9092
         private const val ACTUATOR_MAPPINGS_ENDPOINT =
@@ -35,11 +34,10 @@ class ContractTests : SpecmaticJUnitSupport() {
             System.setProperty("host", APPLICATION_HOST)
             System.setProperty("port", APPLICATION_PORT)
             System.setProperty("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
+            System.setProperty("SPECMATIC_GENERATIVE_TESTS", "true")
 
             // Start Specmatic Http Stub and set the expectations
-            httpStub = createStub(HTTP_STUB_HOST, HTTP_STUB_PORT)
-            val expectationJsonString = File("./src/test/resources/expectation.json").readText()
-            httpStub.setExpectation(expectationJsonString)
+            httpStub = createStub(listOf("./src/test/resources"), HTTP_STUB_HOST, HTTP_STUB_PORT)
 
             // Start Specmatic Kafka Mock and set the expectations
             kafkaMock = KafkaMock.startInMemoryBroker(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)
@@ -62,11 +60,13 @@ class ContractTests : SpecmaticJUnitSupport() {
             // Verify Specmatic Kafka mock and shutdown
             kafkaMock.awaitMessages(3)
             val result = kafkaMock.verifyExpectations()
-            assertThat(result.success).isTrue
-            assertThat(result.errors).isEmpty()
+            if (!result.success) {
+                println(result.errors)
+            }
+            assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue
             kafkaMock.close()
             // Wait for Kafka server to stop
-            Thread.sleep(15000)
+            Thread.sleep(5000)
         }
     }
 }

@@ -27,6 +27,7 @@
         "inventory": 20,
         "type": "gadget"
       }
-    ]
+    ],
+    "status-text": "OK"
   }
 }

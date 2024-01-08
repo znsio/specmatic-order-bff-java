@@ -1,0 +1,21 @@
+{
+    "http-request": {
+        "path": "/orders",
+        "method": "POST",
+        "headers": {
+            "Authenticate": "API-TOKEN-SPEC"
+        },
+        "body": {
+            "productid": 1,
+            "count": 2,
+            "status": "pending"
+        }
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "id": 13
+        },
+        "status-text": "OK"
+    }
+}
