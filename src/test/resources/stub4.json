@@ -5,9 +5,6 @@
         "query": {
             "type": "book"
         },
-        "headers": {
-            "Accept": "application/json, application/*+json"
-        },
         "body": ""
     },
     "http-response": {

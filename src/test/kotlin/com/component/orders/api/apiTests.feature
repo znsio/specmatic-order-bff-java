@@ -47,8 +47,6 @@ Feature: Tests
           "method": "POST",
           "path": "/orders",
           "headers": {
-            "Accept": "text/plain, application/json, application/*+json, */*",
-            "Content-Type": "application/json",
             "Authenticate": "API-TOKEN-SPEC"
           },
           "body": {

@@ -3,12 +3,11 @@
     {
       "provider": "git",
       "repository": "https://github.com/znsio/specmatic-order-contracts.git",
-      "branch": "remove-auto-generated-headers-from-order-api-spec",
       "test": [
         "in/specmatic/examples/store/product-search-bff-api_v4.yaml"
       ],
       "stub": [
-        "in/specmatic/examples/store/api_order_v2_correction.yaml",
+        "in/specmatic/examples/store/api_order_v2.yaml",
         "in/specmatic/examples/store/kafka.yaml"
       ]
     }

@@ -4,9 +4,6 @@
     "path": "/products",
     "query": {
       "type": "gadget"
-    },
-    "headers": {
-      "Accept": "application/json, application/*+json"
     }
   },
   "http-response": {
