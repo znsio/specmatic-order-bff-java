@@ -35,7 +35,7 @@ jacocoTestReport {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-test:3.2.0'
+    implementation 'org.springframework.boot:spring-boot-starter-test:3.2.3'
     implementation('com.intuit.karate:karate-junit5:1.4.1') {
         exclude group: 'io.netty'
     }
