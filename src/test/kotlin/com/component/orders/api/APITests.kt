@@ -52,11 +52,8 @@ class APITests {
             // Shutdown Specmatic Http Stub
             httpStub.close()
 
-            // Verify Specmatic Kafka mock and shutdown
-            kafkaMock.awaitMessages(EXPECTED_NUMBER_OF_MESSAGES)
-            val result = kafkaMock.verifyExpectations()
+            val result = kafkaMock.stop()
             assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue
-            kafkaMock.close()
             // Wait for Kafka server to stop
             Thread.sleep(5000)
         }

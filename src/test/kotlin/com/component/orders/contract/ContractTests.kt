@@ -26,7 +26,7 @@ class ContractTests : SpecmaticJUnitSupport() {
         private const val KAFKA_MOCK_PORT = 9092
         private const val ACTUATOR_MAPPINGS_ENDPOINT =
             "http://$APPLICATION_HOST:$APPLICATION_PORT/actuator/mappings"
-        private const val EXPECTED_NUMBER_OF_MESSAGES = 3
+        private const val EXPECTED_NUMBER_OF_MESSAGES = 6
 
         @JvmStatic
         @BeforeAll
@@ -57,14 +57,8 @@ class ContractTests : SpecmaticJUnitSupport() {
             // Shutdown Specmatic Http Stub
             httpStub.close()
 
-            // Verify Specmatic Kafka mock and shutdown
-            kafkaMock.awaitMessages(3)
-            val result = kafkaMock.verifyExpectations()
-            if (!result.success) {
-                println(result.errors)
-            }
+            val result = kafkaMock.stop()
             assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue
-            kafkaMock.close()
             // Wait for Kafka server to stop
             Thread.sleep(5000)
         }
