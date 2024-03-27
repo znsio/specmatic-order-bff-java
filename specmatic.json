@@ -7,7 +7,7 @@
         "in/specmatic/examples/store/product-search-bff-api_v4.yaml"
       ],
       "stub": [
-        "in/specmatic/examples/store/api_order_v2.yaml",
+        "in/specmatic/examples/store/api_order_v3.yaml",
         "in/specmatic/examples/store/kafka.yaml"
       ]
     }
