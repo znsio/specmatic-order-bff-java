@@ -1,0 +1,25 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  findAvailableProducts(type: String = "gadget", pageSize: Int!): [Product]
+}
+
+type Mutation {
+  createProduct(newProduct: NewProductInput!): Product
+}
+
+type Product {
+  id: ID!
+  name: String!
+  inventory: Int!
+  type: String!
+}
+
+input NewProductInput {
+  name: String!
+  inventory: Int!
+  type: String!
+}
