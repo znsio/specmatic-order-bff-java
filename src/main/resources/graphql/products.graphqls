@@ -5,6 +5,7 @@ schema {
 
 type Query {
   findAvailableProducts(type: String = "gadget", pageSize: Int!): [Product]
+  search(name: String): String!
 }
 
 type Mutation {

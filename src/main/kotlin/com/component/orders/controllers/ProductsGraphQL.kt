@@ -15,4 +15,7 @@ class ProductsGraphQL(@Autowired val orderBFFService: OrderBFFService) {
         if (pageSize < 0) throw IllegalArgumentException("pageSize must be positive")
         return orderBFFService.findProducts(type)
     }
+
+    @QueryMapping
+    fun search(@Argument name: String) = "response for $name"
 }
