@@ -5,14 +5,14 @@ import `in`.specmatic.kafka.mock.KafkaMock
 import `in`.specmatic.kafka.mock.model.Expectation
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
-import `in`.specmatic.test.SpecmaticContractTest
+import `in`.specmatic.test.SpecmaticJUnitSupport
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 
-class ContractTests : SpecmaticContractTest {
+class ContractTests : SpecmaticJUnitSupport() {
 
     companion object {
         private lateinit var context: ConfigurableApplicationContext
