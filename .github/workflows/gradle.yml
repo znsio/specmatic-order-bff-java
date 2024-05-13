@@ -66,7 +66,7 @@ jobs:
     - name: Run Specmatic Insights Github Build Reporter
       working-directory: .
       run: |
-        npx specmatic-insights-github-build-reporter --specmatic-insights-host https://20d4-103-163-106-75.ngrok-free.app --specmatic-coverage ./build/reports/specmatic/coverage_report.json
+        # npx specmatic-insights-github-build-reporter --specmatic-insights-host https://20d4-103-163-106-75.ngrok-free.app --specmatic-coverage ./build/reports/specmatic/coverage_report.json
         cat ./build/reports/specmatic/stub_usage_report.json
         # npx specmatic-insights-github-build-reporter --specmatic-insights-host https://20d4-103-163-106-75.ngrok-free.app --specmatic-stub-usage ./build/reports/specmatic/stub_usage_report.json
       env:
