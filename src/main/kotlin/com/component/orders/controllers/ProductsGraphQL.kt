@@ -18,4 +18,7 @@ class ProductsGraphQL(@Autowired val orderBFFService: OrderBFFService) {
 
     @QueryMapping
     fun search(@Argument name: String) = "response for $name"
+
+    @QueryMapping
+    fun greeting() = "Welcome!"
 }
