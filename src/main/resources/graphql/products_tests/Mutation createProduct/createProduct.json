@@ -1,0 +1,22 @@
+{
+  "http-request": {
+    "method": "POST",
+    "path": "/graphql",
+    "body": {
+      "query": "mutation { createProduct(newProduct: {name: \"The Almanac\", inventory: 10, type: book}) { id name inventory type } }"
+    }
+  },
+  "http-response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "createProduct": {
+          "id": 10,
+          "name": "The Almanac",
+          "inventory": 10,
+          "type": "bok"
+        }
+      }
+    }
+  }
+}
