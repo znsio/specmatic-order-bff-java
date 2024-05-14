@@ -10,6 +10,12 @@
         "in/specmatic/examples/store/api_order_v3.yaml",
         "in/specmatic/examples/store/kafka.yaml"
       ]
+    },
+    {
+      "provider": "filesystem",
+      "test": [
+        "src/main/resources/graphql/products.graphqls"
+      ]
     }
   ],
   "report": {

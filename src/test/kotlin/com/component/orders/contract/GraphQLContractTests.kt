@@ -1,24 +1,17 @@
 package com.component.orders.contract
 
 import com.component.orders.Application
-import `in`.specmatic.core.Result
-import `in`.specmatic.graphql.GraphQLSpecification
+import `in`.specmatic.graphql.test.SpecmaticGraphQLContractTest
 import `in`.specmatic.kafka.mock.KafkaMock
 import `in`.specmatic.kafka.mock.model.Expectation
 import `in`.specmatic.stub.ContractStub
 import `in`.specmatic.stub.createStub
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.DynamicTest
-import org.junit.jupiter.api.TestFactory
 import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
-import java.io.File
-import java.util.stream.Stream
-import kotlin.streams.asStream
 
-class GraphQLContractTests {
+class GraphQLContractTests : SpecmaticGraphQLContractTest {
 
     companion object {
         private lateinit var context: ConfigurableApplicationContext
@@ -69,23 +62,4 @@ class GraphQLContractTests {
             Thread.sleep(5000)
         }
     }
-
-    @TestFactory
-    fun graphQLContractTests(): Stream<DynamicTest> {
-        val spec = GraphQLSpecification.fromSpec(File("./src/main/resources/graphql/products.graphqls").readText())
-
-        val feature = spec.toFeature()
-
-        val contractTests = feature.generateContractTests(emptyList())
-
-        return contractTests.map { test ->
-            DynamicTest.dynamicTest(test.testDescription()) {
-                val result = test.runTest("http://${APPLICATION_HOST}:${APPLICATION_PORT}" ,30000)
-
-                assertThat(result.first).withFailMessage(result.first.reportString()).isInstanceOf(Result.Success::class.java)
-
-            }
-        }.asStream()
-    }
-
 }
