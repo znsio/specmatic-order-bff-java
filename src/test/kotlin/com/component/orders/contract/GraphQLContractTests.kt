@@ -14,8 +14,8 @@ import org.springframework.context.ConfigurableApplicationContext
 class GraphQLContractTests : SpecmaticGraphQLContractTest {
 
     companion object {
-        private lateinit var context: ConfigurableApplicationContext
-        private lateinit var httpStub: ContractStub
+        private var context: ConfigurableApplicationContext? = null
+        private var httpStub: ContractStub? = null
         private lateinit var kafkaMock: KafkaMock
         private const val APPLICATION_HOST = "localhost"
         private const val APPLICATION_PORT = "8080"
@@ -51,10 +51,10 @@ class GraphQLContractTests : SpecmaticGraphQLContractTest {
         @AfterAll
         fun tearDown() {
             // Shutdown Springboot application
-            context.close()
+            context?.close()
 
             // Shutdown Specmatic Http Stub
-            httpStub.close()
+            httpStub?.close()
 
             val result = kafkaMock.stop()
 //            assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue

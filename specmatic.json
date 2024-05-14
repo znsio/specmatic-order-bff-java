@@ -15,6 +15,9 @@
       "provider": "filesystem",
       "test": [
         "src/main/resources/graphql/products.graphqls"
+      ],
+      "stub": [
+        "src/main/resources/graphql/products.graphqls"
       ]
     }
   ],
