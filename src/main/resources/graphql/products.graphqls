@@ -3,10 +3,15 @@ schema {
   mutation: Mutation
 }
 
+enum ProductType {
+  gadget
+  book
+  food
+  other
+}
+
 type Query {
-  findAvailableProducts(type: String = "gadget", pageSize: Int!): [Product]
-  search(name: String): String!
-  greeting: String!
+  findAvailableProducts(type: ProductType!, pageSize: Int!): [Product]
 }
 
 type Mutation {
@@ -17,11 +22,11 @@ type Product {
   id: ID!
   name: String!
   inventory: Int!
-  type: String!
+  type: ProductType!
 }
 
 input NewProductInput {
   name: String!
   inventory: Int!
-  type: String!
+  type: ProductType!
 }
