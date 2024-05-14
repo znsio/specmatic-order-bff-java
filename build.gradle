@@ -44,7 +44,7 @@ dependencies {
     implementation 'org.apache.kafka:kafka-clients:3.6.0'
     implementation("com.google.code.gson:gson:2.10.1")
 
-    implementation('in.specmatic:specmatic-kafka:0.22.0') {
+    implementation('in.specmatic:specmatic-kafka:0.22.1') {
         exclude group: 'org.springframework.boot'
         exclude group: 'org.apache.tomcat.embed'
         exclude group: 'in.specmatic'
