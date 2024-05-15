@@ -23,4 +23,8 @@ class OrderBFFService {
     fun createProduct(newProduct: NewProduct): Id {
         return Id(orderService.createProduct(newProduct))
     }
+
+    fun createProductAndReturn(newProduct: NewProduct): Product? {
+        return orderService.createProductAndReturn(newProduct)
+    }
 }

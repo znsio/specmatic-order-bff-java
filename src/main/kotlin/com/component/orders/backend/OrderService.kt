@@ -73,6 +73,23 @@ class OrderService {
         return JSONObject(response.body).getInt("id")
     }
 
+    fun createProductAndReturn(newProduct: NewProduct): Product? {
+        val apiUrl = orderAPIUrl + "/" + API.CREATE_PRODUCTS.url
+        val headers = getHeaders()
+        val requestEntity = HttpEntity(newProduct, headers)
+        val response = RestTemplate().exchange(
+            apiUrl,
+            API.CREATE_PRODUCTS.method,
+            requestEntity,
+            Product::class.java
+        )
+        if (response.body == null) {
+            error("No product id received in Product API response.")
+        }
+        println("response --> ${response.body}")
+        return response.body
+    }
+
     private fun getHeaders(): HttpHeaders {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
