@@ -1,0 +1,47 @@
+{
+    "http-request": {
+        "path": "/graphql",
+        "method": "POST",
+        "headers": {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "Connection": "close"
+        },
+        "body": {
+            "query": "query FindAvailableProducts {\n    findAvailableProducts(type: gadget, pageSize: 10) {\n        name\n        id\n    }\n}\n",
+            "operationName": "FindAvailableProducts",
+            "variables": {}
+        }
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "errors": [
+                {
+                    "message": "INTERNAL_ERROR for 115599a0-197c-9e58-ac69-bc449e21e8e8",
+                    "locations": [
+                        {
+                            "line": 2,
+                            "column": 5
+                        }
+                    ],
+                    "path": [
+                        "findAvailableProducts"
+                    ],
+                    "extensions": {
+                        "classification": "INTERNAL_ERROR"
+                    }
+                }
+            ],
+            "data": {
+                "findAvailableProducts": null
+            }
+        },
+        "status-text": "OK",
+        "headers": {
+            "Content-Type": "application/json",
+            "Transfer-Encoding": "chunked",
+            "Connection": "close"
+        }
+    }
+}

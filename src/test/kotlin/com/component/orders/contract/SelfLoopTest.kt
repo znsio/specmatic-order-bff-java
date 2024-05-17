@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeAll
 
 class SelfLoopTest : SpecmaticGraphQLContractTest {
     companion object {
-        private lateinit var graphQLStub: ContractStub
+        private lateinit var graphQLStub: GraphQLStub
         private const val APPLICATION_HOST = "localhost"
         private const val APPLICATION_PORT = "9000"
 

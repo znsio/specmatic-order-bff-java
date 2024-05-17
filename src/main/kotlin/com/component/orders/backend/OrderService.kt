@@ -49,11 +49,11 @@ class OrderService {
 
     fun findProducts(type: String): List<Product> {
         val products = fetchProductsFromBackendAPI(type)
-//        val producer = getKafkaProducer()
-//        products.forEach {
-//            val productMessage = ProductMessage(it.id, it.name, it.inventory)
-//            producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
-//        }
+        val producer = getKafkaProducer()
+        products.forEach {
+            val productMessage = ProductMessage(it.id, it.name, it.inventory)
+            producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
+        }
         return products
     }
 
