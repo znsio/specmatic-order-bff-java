@@ -30,6 +30,12 @@ This will start the springboot BFF server
 ```shell
 ./gradlew bootRun
 ```
+_*Note:* When running this command you might get an error:_
+```shell
+Could not find in. specmatic: specmatic-kafka:0.xx.yy.
+```
+You would have got this error because you don't have access to Specmatic Kafka. To fix this issue, reach out to us at specmatic@xnsio.com and we'll add you to our beta program and provide you access.
+
 Access find orders api at http://localhost:8080/findAvailableProducts
 _*Note:* Unless domain api service is running on port 9000, above requests will fail. Move to next section for solution!_
 
