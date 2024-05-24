@@ -2,7 +2,7 @@
   "sources": [
     {
       "provider": "git",
-      "repository": "https://${CENTRAL_CONTRACT_REPO_PAT}@github.com/znsio/central-contract-repo-private.git",
+      "repository": "https://${CENTRAL_CONTRACT_REPO_PAT}@github.com/znsio/specmatic-order-contracts.git",
       "test": [
         "in/specmatic/examples/store/product-search-bff-api_v4.yaml"
       ],
