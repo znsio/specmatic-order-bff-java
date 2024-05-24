@@ -43,7 +43,7 @@ jobs:
 
     - name: Build BFF project with Gradle
       env:
-        CENTRAL_CONTRACT_REPO_PAT: ${{ secrets.CENTRAL_CONTRACT_REPO_ACCESS_TOKEN }
+        CENTRAL_CONTRACT_REPO_PAT: ${{ secrets.CENTRAL_CONTRACT_REPO_ACCESS_TOKEN }}
       run: ./gradlew build
 
     - name: Run coverage report
