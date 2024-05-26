@@ -61,11 +61,10 @@ jobs:
         echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
 
     - name: Run Specmatic Insights Github Build Reporter
-      uses: znsio/specmatic-insights-build-reporter-github-action@v1.0.11
+      uses: znsio/specmatic-insights-build-reporter-github-action@v1.0.12
       with:
         specmatic-insights-host: https://insights.specmatic.in 
-        specmatic-coverage: ./build/reports/specmatic/coverage_report.json 
-        specmatic-stub-usage: ./build/reports/specmatic/stub_usage_report.json
+        specmatic-reports-dir: ./build/reports/specmatic
       env:
         SPECMATIC_ORG_ID: ${{ secrets.SPECMATIC_ORG_ID }}
         GITHUB_TOKEN: ${{ secrets.SPECMATIC_INSIGHTS_ACCESS_TOKEN }}
