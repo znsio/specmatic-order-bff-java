@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest]
         java: [17]
     runs-on: ${{ matrix.os }}
     steps:
@@ -73,7 +73,7 @@ jobs:
         echo "workflow_id=$workflow_id" >> "$GITHUB_OUTPUT"
 
     - name: Run Specmatic Insights Github Build Reporter
-      uses: znsio/specmatic-insights-build-reporter-github-action@v1.1.5
+      uses: znsio/specmatic-insights-build-reporter-github-action@v1.1.6
       with:
         org-id: ${{ secrets.SPECMATIC_ORG_ID }}
         branch-ref: ${{ github.ref }}
