@@ -6,26 +6,29 @@ import com.google.gson.Gson
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.json.JSONObject
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.client.SimpleClientHttpRequestFactory
+import org.springframework.kafka.core.KafkaTemplate
+import org.springframework.kafka.support.SendResult
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.util.*
 
 
 @Service
-class OrderService {
+class OrderService(
+    private val kafkaTemplate: KafkaTemplate<String, String>
+) {
     private val authToken = "API-TOKEN-SPEC"
+    // TODO - use jackson instead
     private val gson = Gson()
 
     @Value("\${order.api}")
     lateinit var orderAPIUrl: String
-
-    @Value("\${kafka.bootstrap-servers}")
-    lateinit var kafkaBootstrapServers: String
 
     @Value("\${kafka.topic}")
     lateinit var kafkaTopic: String
@@ -48,11 +51,16 @@ class OrderService {
     }
 
     fun findProducts(type: String): List<Product> {
+        println("KafkaTemplate --> $kafkaTemplate")
         val products = fetchProductsFromBackendAPI(type)
-        val producer = getKafkaProducer()
         products.forEach {
             val productMessage = ProductMessage(it.id, it.name, it.inventory)
-            producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
+            try {
+                kafkaTemplate.send(kafkaTopic, gson.toJson(productMessage))
+            } catch(e : Exception) {
+                println("The exception --> $e")
+                e.printStackTrace()
+            }
         }
         return products
     }
@@ -97,14 +105,5 @@ class OrderService {
                 product["id"].toString().toInt(),
             )
         }
-    }
-
-    private fun getKafkaProducer(): KafkaProducer<String, String> {
-        val props = Properties()
-        println("kafkaBootstrapServers: $kafkaBootstrapServers")
-        props["bootstrap.servers"] = kafkaBootstrapServers
-        props["key.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
-        props["value.serializer"] = "org.apache.kafka.common.serialization.StringSerializer"
-        return KafkaProducer<String, String>(props)
     }
 }
