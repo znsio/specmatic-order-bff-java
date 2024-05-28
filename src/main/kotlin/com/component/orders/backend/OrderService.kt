@@ -5,7 +5,6 @@ import com.component.orders.models.messages.ProductMessage
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.json.JSONObject
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
@@ -43,7 +42,8 @@ class OrderService(private val jacksonObjectMapper: ObjectMapper) {
         if (response.body == null) {
             error("No order id received in Order API response.")
         }
-        return JSONObject(response.body).getInt("id")
+        val responseBody = jacksonObjectMapper.readValue(response.body, Map::class.java) as Map<String, Any>
+        return responseBody["id"] as Int
     }
 
     fun findProducts(type: String): List<Product> {
@@ -74,7 +74,8 @@ class OrderService(private val jacksonObjectMapper: ObjectMapper) {
         if (response.body == null) {
             error("No product id received in Product API response.")
         }
-        return JSONObject(response.body).getInt("id")
+        val responseBody = jacksonObjectMapper.readValue(response.body, Map::class.java) as Map<String, Any>
+        return responseBody["id"] as Int
     }
 
     private fun getHeaders(): HttpHeaders {

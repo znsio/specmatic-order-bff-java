@@ -35,11 +35,11 @@ jacocoTestReport {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.2.0'
-    implementation 'org.springframework.boot:spring-boot-starter-test:3.2.0'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.0'
     implementation 'org.apache.kafka:kafka-clients:3.6.0'
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.0'
     testImplementation('com.intuit.karate:karate-junit5:1.4.1') {
         exclude group: 'io.netty'
     }
