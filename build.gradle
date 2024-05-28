@@ -36,7 +36,6 @@ jacocoTestReport {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.2.0'
     implementation 'org.springframework.boot:spring-boot-starter-test:3.2.0'
-    implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation 'org.springframework.boot:spring-boot-starter-actuator:3.2.0'
     implementation 'org.apache.kafka:kafka-clients:3.6.0'
     implementation 'javax.validation:validation-api:2.0.1.Final'
