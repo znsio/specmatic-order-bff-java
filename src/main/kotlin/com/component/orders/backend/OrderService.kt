@@ -2,7 +2,7 @@ package com.component.orders.backend
 
 import com.component.orders.models.*
 import com.component.orders.models.messages.ProductMessage
-import com.google.gson.Gson
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.json.JSONObject
@@ -17,9 +17,8 @@ import java.util.*
 
 
 @Service
-class OrderService {
+class OrderService(private val jacksonObjectMapper: ObjectMapper) {
     private val authToken = "API-TOKEN-SPEC"
-    private val gson = Gson()
 
     @Value("\${order.api}")
     lateinit var orderAPIUrl: String
@@ -52,7 +51,11 @@ class OrderService {
         val producer = getKafkaProducer()
         products.forEach {
             val productMessage = ProductMessage(it.id, it.name, it.inventory)
-            producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
+
+            producer.send(ProducerRecord(
+                kafkaTopic,
+                jacksonObjectMapper.writeValueAsString(productMessage)
+            ))
         }
         producer.close()
         return products
