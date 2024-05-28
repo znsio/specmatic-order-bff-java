@@ -52,7 +52,7 @@ class ContractTests : SpecmaticContractTest {
         @AfterAll
         fun tearDown() {
             // Shutdown Springboot application
-            context.close()
+            context.stop()
 
             // Shutdown Specmatic Http Stub
             httpStub.close()
