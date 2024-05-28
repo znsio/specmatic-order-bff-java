@@ -59,8 +59,6 @@ class ContractTests : SpecmaticContractTest {
 
             val result = kafkaMock.stop()
             assertThat(result.success).withFailMessage(result.errors.joinToString()).isTrue
-            // Wait for Kafka server to stop
-            Thread.sleep(5000)
         }
     }
 }
