@@ -54,6 +54,7 @@ class OrderService {
             val productMessage = ProductMessage(it.id, it.name, it.inventory)
             producer.send(ProducerRecord(kafkaTopic, gson.toJson(productMessage)))
         }
+        producer.close()
         return products
     }
 
