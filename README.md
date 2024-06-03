@@ -22,20 +22,19 @@ A typical web application might look like this. We can use Specmatic to practice
 ## Tech
 1. Spring boot
 2. Specmatic
-3. Specmatic Beta extension (for mocking Kafka)
+3. Specmatic-Kafka Beta extension (for mocking Kafka)
 4. Karate
- 
+
+## Build the project
+1. Create a personal access token on github with `read:packages` scope.
+2. Add `gpr.user=<github_username>` and `gpr.key=<personal_access_token>` properties in `<usr.home>/.gradle/gradle.properties` file. Update `<usr.home>` with your home directory path.
+3. Run `./gradlew assemble`
+
 ## Start BFF Server
 This will start the springboot BFF server
 ```shell
 ./gradlew bootRun
 ```
-_*Note:* When running this command you might get an error:_
-```shell
-Could not find in. specmatic: specmatic-kafka:0.xx.yy.
-```
-You would have got this error because you don't have access to Specmatic Kafka. To fix this issue, reach out to us at specmatic@xnsio.com and we'll add you to our beta program and provide you access.
-
 Access find orders api at http://localhost:8080/findAvailableProducts
 _*Note:* Unless domain api service is running on port 9000, above requests will fail. Move to next section for solution!_
 
