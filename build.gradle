@@ -18,14 +18,6 @@ repositories {
     maven {
         url = 'https://jcenter.bintray.com'
     }
-
-    maven {
-        url = "https://maven.pkg.github.com/znsio/specmatic-kafka-packages"
-        credentials {
-            username = project.property('gpr.user')
-            password = project.property('gpr.key')
-        }
-    }
 }
 
 tasks.withType(KotlinCompile).configureEach {
