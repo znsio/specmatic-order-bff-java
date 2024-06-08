@@ -73,7 +73,7 @@ jobs:
         echo "workflow_id=$workflow_id" >> "$GITHUB_OUTPUT"
 
     - name: Run Specmatic Insights Github Build Reporter
-      uses: znsio/specmatic-insights-build-reporter-github-action@v1.1.9
+      uses: znsio/specmatic-insights-build-reporter-github-action@v1.1.11
       with:
         org-id: ${{ secrets.SPECMATIC_ORG_ID }}
         branch-ref: ${{ github.ref }}
