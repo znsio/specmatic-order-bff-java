@@ -61,7 +61,7 @@ jobs:
         echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
 
     - name: Run Specmatic Insights Github Build Reporter
-      uses: znsio/specmatic-insights-build-reporter-github-action@v2.0.0
+      uses: znsio/specmatic-insights-build-reporter-github-action@v2.0.1
       with:
         github-token: ${{ secrets.SPECMATIC_INSIGHTS_ACCESS_TOKEN }}
         org-id: ${{ secrets.SPECMATIC_ORG_ID }}
