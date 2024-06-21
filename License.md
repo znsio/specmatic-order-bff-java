@@ -1,4 +1,4 @@
-Copyright (c) 2020 [Qontract Builders](https://github.com/orgs/qontract/teams/qontract-builders/members)
+Copyright (c) 2024 [Specmatic](https://specmatic.in)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
