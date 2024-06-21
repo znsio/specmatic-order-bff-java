@@ -8,14 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import jakarta.validation.Valid
 
 @RestController
+@Validated
 class Products(@Autowired val orderBFFService: OrderBFFService) {
     @GetMapping("/findAvailableProducts", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun findAvailableProducts(
@@ -35,6 +38,6 @@ class Products(@Autowired val orderBFFService: OrderBFFService) {
 
     @PostMapping("/products", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun createProduct(
-        @RequestBody newProduct: NewProduct
+        @Valid @RequestBody newProduct: NewProduct
     ): ResponseEntity<Id> = ResponseEntity(orderBFFService.createProduct(newProduct), HttpStatus.CREATED)
 }
