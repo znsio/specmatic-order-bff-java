@@ -1,2 +1,2 @@
-libs/specmatic-kafka-0.22.2-TRIAL.jar filter=lfs diff=lfs merge=lfs -text
-libs/specmatic-kafka-0.22.2-TRIAL.pom filter=lfs diff=lfs merge=lfs -text
+libs/specmatic-kafka-0.22.5-TRIAL.jar filter=lfs diff=lfs merge=lfs -text
+libs/specmatic-kafka-0.22.5-TRIAL.pom filter=lfs diff=lfs merge=lfs -text
