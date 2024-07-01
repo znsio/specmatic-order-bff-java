@@ -23,21 +23,6 @@ jobs:
         distribution: 'oracle'
         java-version: ${{ matrix.java }}
 
-    - name: Checkout Specmatic Kafka Repo
-      uses: actions/checkout@v4
-      with:
-        repository: znsio/specmatic-kafka
-        path: specmatic-kafka
-        token: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
-
-    - name: Grant execute permission for gradlew
-      working-directory: specmatic-kafka
-      run: chmod +x gradlew
-
-    - name: Publish Specmatic Kafka to Local Maven Repo
-      working-directory: specmatic-kafka
-      run: ./gradlew publishToMavenLocal
-
     - name: Grant execute permission for gradlew on BFF repo
       run: chmod +x gradlew
 

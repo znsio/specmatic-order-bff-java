@@ -10,9 +10,11 @@ plugins {
 
 repositories {
     mavenLocal()
-
     maven {
         url = 'https://repo.maven.apache.org/maven2'
+    }
+    maven {
+        url uri('lib')
     }
 }
 
