@@ -40,7 +40,7 @@ dependencies {
     testImplementation('com.intuit.karate:karate-junit5:1.4.1') {
         exclude group: 'io.netty'
     }
-    testImplementation('in.specmatic:junit5-support:1.3.33')
+    testImplementation('in.specmatic:junit5-support:1.3.34')
     testImplementation('in.specmatic:specmatic-kafka:0.22.5-TRIAL') {
         exclude group: 'org.springframework.boot'
         exclude group: 'org.apache.tomcat.embed'
