@@ -33,7 +33,7 @@ class APITests {
         @JvmStatic
         fun setUp() {
             // Start Specmatic Http Stub
-            httpStub = createStub(HTTP_STUB_HOST, HTTP_STUB_PORT)
+            httpStub = createStub(HTTP_STUB_HOST, HTTP_STUB_PORT, strict = true)
 
             // Start Specmatic Kafka Mock and set the expectations
             kafkaMock = KafkaMock.startInMemoryBroker(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)

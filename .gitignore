@@ -1,6 +1,5 @@
 target/*
 .DS_Store
-lib/*
 *.iml
 build/*
 .idea/*
@@ -13,3 +12,4 @@ js/node_modules
 bin/*
 build/reports/specmatic/
 /recordings_backup/
+.java-version

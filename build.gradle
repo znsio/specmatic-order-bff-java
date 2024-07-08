@@ -9,10 +9,10 @@ plugins {
 }
 
 repositories {
+    mavenCentral()
     mavenLocal()
-
     maven {
-        url = 'https://repo.maven.apache.org/maven2'
+        url uri("lib")
     }
 }
 
@@ -40,7 +40,7 @@ dependencies {
     testImplementation('com.intuit.karate:karate-junit5:1.4.1') {
         exclude group: 'io.netty'
     }
-    testImplementation('in.specmatic:junit5-support:1.3.35')
+    testImplementation('in.specmatic:junit5-support:1.3.30')
     testImplementation('in.specmatic:specmatic-kafka:0.22.5-TRIAL') {
         exclude group: 'org.springframework.boot'
         exclude group: 'org.apache.tomcat.embed'
