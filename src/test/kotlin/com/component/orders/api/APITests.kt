@@ -2,10 +2,10 @@ package com.component.orders.api
 
 import com.component.orders.Application
 import com.intuit.karate.junit5.Karate
-import `in`.specmatic.kafka.mock.KafkaMock
-import `in`.specmatic.kafka.mock.model.Expectation
-import `in`.specmatic.stub.ContractStub
-import `in`.specmatic.stub.createStub
+import io.specmatic.kafka.mock.KafkaMock
+import io.specmatic.kafka.mock.model.Expectation
+import io.specmatic.stub.ContractStub
+import io.specmatic.stub.createStub
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll

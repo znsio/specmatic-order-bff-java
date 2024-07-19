@@ -1,7 +1,7 @@
 {
   "formatVersion": "1.1",
   "component": {
-    "group": "in.specmatic",
+    "group": "io.specmatic",
     "module": "specmatic-kafka",
     "version": "0.22.5-TRIAL",
     "attributes": {
@@ -38,11 +38,11 @@
         {
           "name": "specmatic-kafka-0.22.5-TRIAL.jar",
           "url": "specmatic-kafka-0.22.5-TRIAL.jar",
-          "size": 275595,
-          "sha512": "bed9b91d4915f4fffd14606ab392243aba234b353e7ec47c79450774b75cd0ea2356d33b4d842573f944f2f3dd0b50b2d4e7a599ef44b5bcacfca3b7941ab2bb",
-          "sha256": "8dbb671be4e131c03697e0807c58f28b7700cf167cb5689f0063ebdea647b0db",
-          "sha1": "6afb76b7e121cc3aca9cbf47f9dc6bdefa4ef975",
-          "md5": "93ec2b5758a525768a30ad5bd67b346d"
+          "size": 275788,
+          "sha512": "05d52edd454666a0984310b960cffbba3c0e7c60a7974a0b17d1ce633d45ec9e188852aacf2a22587cf113afb831c64782898930ae89631d4b7a072fc80db441",
+          "sha256": "66a91ebbf20e4ef6689e2dfe27b32ce277f681005840b415f6c0def4a74e3720",
+          "sha1": "cae61381b88d1ed41d3b56a7fddb4a7585df579e",
+          "md5": "7e7d4b8397630399c4ee2289effafd99"
         }
       ]
     },
@@ -128,10 +128,10 @@
           }
         },
         {
-          "group": "in.specmatic",
+          "group": "io.specmatic",
           "module": "specmatic-core",
           "version": {
-            "requires": "1.3.30"
+            "requires": "2.0.0"
           }
         },
         {
@@ -272,11 +272,11 @@
         {
           "name": "specmatic-kafka-0.22.5-TRIAL.jar",
           "url": "specmatic-kafka-0.22.5-TRIAL.jar",
-          "size": 275595,
-          "sha512": "bed9b91d4915f4fffd14606ab392243aba234b353e7ec47c79450774b75cd0ea2356d33b4d842573f944f2f3dd0b50b2d4e7a599ef44b5bcacfca3b7941ab2bb",
-          "sha256": "8dbb671be4e131c03697e0807c58f28b7700cf167cb5689f0063ebdea647b0db",
-          "sha1": "6afb76b7e121cc3aca9cbf47f9dc6bdefa4ef975",
-          "md5": "93ec2b5758a525768a30ad5bd67b346d"
+          "size": 275788,
+          "sha512": "05d52edd454666a0984310b960cffbba3c0e7c60a7974a0b17d1ce633d45ec9e188852aacf2a22587cf113afb831c64782898930ae89631d4b7a072fc80db441",
+          "sha256": "66a91ebbf20e4ef6689e2dfe27b32ce277f681005840b415f6c0def4a74e3720",
+          "sha1": "cae61381b88d1ed41d3b56a7fddb4a7585df579e",
+          "md5": "7e7d4b8397630399c4ee2289effafd99"
         }
       ]
     },
