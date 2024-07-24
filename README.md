@@ -1,13 +1,13 @@
 # Specmatic Sample: Springboot BFF calling Domain API
 
-* [Specmatic Website](https://specmatic.in)
-* [Specmatic Documenation](https://specmatic.in/documentation.html)
+* [Specmatic Website](https://specmatic.io)
+* [Specmatic Documentation](https://specmatic.io/documentation.html)
 
 This sample project demonstrates how we can practice contract-driven development and contract testing in a SpringBoot (Kotlin) application that depends on an external domain service and Kafka. Here, Specmatic is used to stub calls to domain API service based on its OpenAPI spec and mock Kafka based on its AsyncAPI spec.
 
-Here is the domain api [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/api_order_v1.yaml)
+Here is the domain api [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/io/specmatic/examples/store/openapi/api_order_v3.yaml)
 
-Here is the [AsyncAPI spec](https://github.com/znsio/specmatic-order-contracts/blob/main/in/specmatic/examples/store/API_order_v1.yaml) of Kafka that defines the topics and message schema.
+Here is the [AsyncAPI spec](https://github.com/znsio/specmatic-order-contracts/blob/main/io/specmatic/examples/store/asyncapi/kafka.yaml) of Kafka that defines the topics and message schema.
 
 ## Definitions
 * BFF: Backend for Front End

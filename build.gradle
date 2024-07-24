@@ -78,7 +78,7 @@ test {
 
 }
 
-group = 'in.specmatic.sample'
+group = 'io.specmatic.sample'
 version = '1.0'
 sourceCompatibility = '17'
 
