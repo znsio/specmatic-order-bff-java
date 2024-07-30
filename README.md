@@ -24,35 +24,41 @@ A typical web application might look like this. We can use Specmatic to practice
 2. Specmatic
 3. Specmatic Beta extension (for mocking Kafka)
 4. Karate
+
+## Run Tests
+This will start the specmatic stub server for domain api and kafka mock using the information in specmatic.json and run contract tests using Specmatic and API Tests using karate.
+```shell
+./gradlew test
+```
+
+# Break down each components and understand what is happening
  
+### Start the dependent components
+1. Download Specmatic Jar from [github](https://github.com/znsio/specmatic/releases)
+
+2. Start domain api stub server
+```shell
+java -jar specmatic.jar stub --port=8090
+```
+
+3. Start Kafka stub server
+```shell
+java -jar lib/specmatic-kafka-0.22.5-TRIAL-all.jar --specification=.specmatic/repos/specmatic-order-contracts/io/specmatic/examples/store/asyncapi/kafka.yaml
+```
+
 ## Start BFF Server
 This will start the springboot BFF server
 ```shell
 ./gradlew bootRun
 ```
-_*Note:* When running this command you might get an error:_
+
+## Test if everything is working
+
 ```shell
-Could not find in. specmatic: specmatic-kafka:0.xx.yy.
+curl -H "pageSize: 10" "http://localhost:8080/findAvailableProducts"
 ```
-You would have got this error because you don't have access to Specmatic Kafka. To fix this issue, reach out to us at specmatic@xnsio.com and we'll add you to our beta program and provide you access.
 
-Access find orders api at http://localhost:8080/findAvailableProducts
-_*Note:* Unless domain api service is running on port 9000, above requests will fail. Move to next section for solution!_
-
-### Start BFF Server with Domain API Stub
-1. Download Specmatic Jar from [github](https://github.com/znsio/specmatic/releases)
-
-2. Start domain api stub server
-```shell
-java -jar specmatic.jar stub
-```
-Access find orders api again at http://localhost:8080/findAvailableProducts with result like
+You result should look like:
 ```json
 [{"id":698,"name":"NUBYR","type":"book","inventory":278}]
-```
-
-## Run Tests
-This will start the specmatic stub server for domain api using the information in specmatic.json and run the karate tests that expects the domain api at port 9000.
-```shell
-./gradlew test
 ```
