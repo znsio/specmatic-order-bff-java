@@ -31,7 +31,7 @@ This will start the specmatic stub server for domain api and kafka mock using th
 ./gradlew test
 ```
 
-# Break down each components and understand what is happening
+# Break down each component to understand what is happening
  
 ### Start the dependent components
 1. Download Specmatic Jar from [github](https://github.com/znsio/specmatic/releases)
