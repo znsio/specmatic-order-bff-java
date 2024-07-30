@@ -26,7 +26,7 @@ A typical web application might look like this. We can use Specmatic to practice
 4. Karate
 
 ## Run Tests
-This will start the specmatic stub server for domain api and kafka mock using the information in specmatic.json and run contract tests using Specmatic and API Tests using karate.
+This will start the specmatic stub server for domain api and kafka mock using the information in specmatic.yaml and run contract tests using Specmatic and API Tests using karate.
 ```shell
 ./gradlew test
 ```
