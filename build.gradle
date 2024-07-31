@@ -36,9 +36,6 @@ dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.0'
-    testImplementation('com.intuit.karate:karate-junit5:1.4.1') {
-        exclude group: 'io.netty'
-    }
     testImplementation('io.specmatic:junit5-support:2.0.3')
     testImplementation('io.specmatic:specmatic-kafka:0.22.5-TRIAL') 
     testImplementation(
