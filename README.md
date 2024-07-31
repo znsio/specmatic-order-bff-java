@@ -32,18 +32,24 @@ This will start the specmatic stub server for domain api and kafka mock using th
 ```
 
 # Break down each component to understand what is happening
+
+### Prerequisites
+
+1. Docker Desktop
+2. Java and Gradle
  
 ### Start the dependent components
-1. Download Specmatic Jar from [github](https://github.com/znsio/specmatic/releases)
 
-2. Start domain api stub server
+1. Start domain api stub server
+
 ```shell
-java -jar specmatic.jar stub --port=8090
+docker run -v "$PWD/specmatic.yaml:/specmatic.yaml" -p 8090:9000 znsio/specmatic stub --config "/specmatic.yaml"
 ```
 
-3. Start Kafka stub server
+2. Start Kafka stub server
+
 ```shell
-java -jar lib/specmatic-kafka-0.22.5-TRIAL-all.jar --specification=.specmatic/repos/specmatic-order-contracts/io/specmatic/examples/store/asyncapi/kafka.yaml
+docker run -p 9092:9092 -p 2181:2181 -v $(pwd)/specmatic.yaml:/usr/src/app/specmatic.yaml znsio/specmatic-kafka-trial
 ```
 
 ## Start BFF Server
@@ -62,3 +68,5 @@ You result should look like:
 ```json
 [{"id":698,"name":"NUBYR","type":"book","inventory":278}]
 ```
+
+Also observe the logs in the Specmatic HTTP Stub Server and Specmatic Kafka Mock Server.
