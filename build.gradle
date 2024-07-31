@@ -39,7 +39,7 @@ dependencies {
     testImplementation('com.intuit.karate:karate-junit5:1.4.1') {
         exclude group: 'io.netty'
     }
-    testImplementation('io.specmatic:junit5-support:2.0.1')
+    testImplementation('io.specmatic:junit5-support:2.0.3')
     testImplementation('io.specmatic:specmatic-kafka:0.22.5-TRIAL') 
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
