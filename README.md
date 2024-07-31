@@ -61,6 +61,8 @@ This will start the springboot BFF server
 
 ## Test if everything is working
 
+Note: For Windows OS, add `.exe` extension to curl command on PowerShell or use `cmd.exe` instead.
+
 ```shell
 curl -H "pageSize: 10" "http://localhost:8080/findAvailableProducts"
 ```
