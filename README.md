@@ -37,19 +37,20 @@ This will start the specmatic stub server for domain api and kafka mock using th
 
 1. Docker Desktop
 2. Java and Gradle
+3. If you are on a Windows OS, please use PowerShell.
  
 ### Start the dependent components
 
 1. Start domain api stub server
 
 ```shell
-docker run -v "$PWD/specmatic.yaml:/specmatic.yaml" -p 8090:9000 znsio/specmatic stub --config "/specmatic.yaml"
+docker run -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" -p 8090:9000 znsio/specmatic stub
 ```
 
 2. Start Kafka stub server
 
 ```shell
-docker run -p 9092:9092 -p 2181:2181 -v $(pwd)/specmatic.yaml:/usr/src/app/specmatic.yaml znsio/specmatic-kafka-trial
+docker run -p 9092:9092 -p 2181:2181 -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial
 ```
 
 ## Start BFF Server
