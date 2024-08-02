@@ -1,6 +1,5 @@
 package com.component.orders.contract
 
-import com.component.orders.Application
 import io.specmatic.kafka.mock.KafkaMock
 import io.specmatic.kafka.mock.model.Expectation
 import io.specmatic.stub.ContractStub
@@ -9,13 +8,12 @@ import io.specmatic.test.SpecmaticContractTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
-import org.springframework.boot.SpringApplication
-import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.boot.test.context.SpringBootTest
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class ContractTests : SpecmaticContractTest {
 
     companion object {
-        private lateinit var context: ConfigurableApplicationContext
         private lateinit var httpStub: ContractStub
         private lateinit var kafkaMock: KafkaMock
         private const val APPLICATION_HOST = "localhost"
@@ -42,18 +40,11 @@ class ContractTests : SpecmaticContractTest {
             // Start Specmatic Kafka Mock and set the expectations
             kafkaMock = KafkaMock.startInMemoryBroker(KAFKA_MOCK_HOST, KAFKA_MOCK_PORT)
             kafkaMock.setExpectations(listOf(Expectation("product-queries", EXPECTED_NUMBER_OF_MESSAGES)))
-
-            // Start Springboot application
-            val springApp = SpringApplication(Application::class.java)
-            context = springApp.run()
         }
 
         @JvmStatic
         @AfterAll
         fun tearDown() {
-            // Shutdown Springboot application
-            context.stop()
-
             // Shutdown Specmatic Http Stub
             httpStub.close()
 
