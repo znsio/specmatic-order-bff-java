@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.specmatic</groupId>
   <artifactId>specmatic-kafka</artifactId>
-  <version>0.22.5-TRIAL</version>
+  <version>0.22.8-TRIAL</version>
   <name>Specmatic Kafka</name>
   <description>Specmatic Smart-Mock for Kafka</description>
   <url>https://specmatic.io</url>
@@ -16,7 +16,7 @@
     <developer>
       <id>specmaticBuilders</id>
       <name>Specmatic Builders</name>
-      <email>info@specmatic.in</email>
+      <email>info@specmatic.io</email>
     </developer>
   </developers>
   <dependencies>
@@ -89,7 +89,7 @@
     <dependency>
       <groupId>io.specmatic</groupId>
       <artifactId>specmatic-core</artifactId>
-      <version>2.0.0</version>
+      <version>2.0.4</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>

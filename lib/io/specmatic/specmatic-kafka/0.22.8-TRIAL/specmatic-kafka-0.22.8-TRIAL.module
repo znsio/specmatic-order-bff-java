@@ -3,7 +3,7 @@
   "component": {
     "group": "io.specmatic",
     "module": "specmatic-kafka",
-    "version": "0.22.5-TRIAL",
+    "version": "0.22.8-TRIAL",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -36,13 +36,13 @@
       ],
       "files": [
         {
-          "name": "specmatic-kafka-0.22.5-TRIAL.jar",
-          "url": "specmatic-kafka-0.22.5-TRIAL.jar",
-          "size": 275682,
-          "sha512": "096cf972c99220ca302e642aa361834e2e580502e851726626ef0bc07a985ec1a4cc715e674b30b2ec23ef1daea0e9d716cb6d034b6ddec0dbb4532de3732689",
-          "sha256": "4aa0a2f23ad697f2c6150a6fc3f945fa05cb73dabef30addcdfd52198dfd71de",
-          "sha1": "683a4e20fdbe4cf76976bb9de592822738d6869e",
-          "md5": "5b200d279ad92d3596bfc50286009c4f"
+          "name": "specmatic-kafka-0.22.8-TRIAL.jar",
+          "url": "specmatic-kafka-0.22.8-TRIAL.jar",
+          "size": 494904,
+          "sha512": "f68cf7fdf1ec791f0bdb8b52b2ed32c4cf76c586a0ad4d095db3dc56c3f8ce9d21aeeae3637cab886b1d20e477661df66cf75fcfacd2c106190fe67417052dac",
+          "sha256": "197991cd75f1685fad2452616934cad1ec5773489de3fb1b481cced82c9506dc",
+          "sha1": "119b792bc5cb873495aadf00134b70796998dfa2",
+          "md5": "efcc80dbb7b4ede8ddd7559dda27ac97"
         }
       ]
     },
@@ -131,7 +131,7 @@
           "group": "io.specmatic",
           "module": "specmatic-core",
           "version": {
-            "requires": "2.0.0"
+            "requires": "2.0.4"
           }
         },
         {
@@ -270,13 +270,13 @@
       ],
       "files": [
         {
-          "name": "specmatic-kafka-0.22.5-TRIAL.jar",
-          "url": "specmatic-kafka-0.22.5-TRIAL.jar",
-          "size": 275682,
-          "sha512": "096cf972c99220ca302e642aa361834e2e580502e851726626ef0bc07a985ec1a4cc715e674b30b2ec23ef1daea0e9d716cb6d034b6ddec0dbb4532de3732689",
-          "sha256": "4aa0a2f23ad697f2c6150a6fc3f945fa05cb73dabef30addcdfd52198dfd71de",
-          "sha1": "683a4e20fdbe4cf76976bb9de592822738d6869e",
-          "md5": "5b200d279ad92d3596bfc50286009c4f"
+          "name": "specmatic-kafka-0.22.8-TRIAL.jar",
+          "url": "specmatic-kafka-0.22.8-TRIAL.jar",
+          "size": 494904,
+          "sha512": "f68cf7fdf1ec791f0bdb8b52b2ed32c4cf76c586a0ad4d095db3dc56c3f8ce9d21aeeae3637cab886b1d20e477661df66cf75fcfacd2c106190fe67417052dac",
+          "sha256": "197991cd75f1685fad2452616934cad1ec5773489de3fb1b481cced82c9506dc",
+          "sha1": "119b792bc5cb873495aadf00134b70796998dfa2",
+          "md5": "efcc80dbb7b4ede8ddd7559dda27ac97"
         }
       ]
     },
