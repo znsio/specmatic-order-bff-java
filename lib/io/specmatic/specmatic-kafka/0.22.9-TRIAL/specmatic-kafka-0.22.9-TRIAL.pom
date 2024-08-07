@@ -8,7 +8,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.specmatic</groupId>
   <artifactId>specmatic-kafka</artifactId>
-  <version>0.22.8-TRIAL</version>
+  <version>0.22.9-TRIAL</version>
   <name>Specmatic Kafka</name>
   <description>Specmatic Smart-Mock for Kafka</description>
   <url>https://specmatic.io</url>
@@ -64,20 +64,8 @@
     </dependency>
     <dependency>
       <groupId>info.picocli</groupId>
-      <artifactId>picocli-spring-boot-starter</artifactId>
-      <version>4.7.0</version>
-      <scope>runtime</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>ch.qos.logback</groupId>
-          <artifactId>logback-classic</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
-      <version>4.7.0</version>
+      <version>4.7.6</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>

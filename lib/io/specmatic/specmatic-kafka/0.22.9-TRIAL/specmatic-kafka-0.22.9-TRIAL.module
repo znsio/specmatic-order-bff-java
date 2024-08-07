@@ -3,7 +3,7 @@
   "component": {
     "group": "io.specmatic",
     "module": "specmatic-kafka",
-    "version": "0.22.8-TRIAL",
+    "version": "0.22.9-TRIAL",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -36,13 +36,13 @@
       ],
       "files": [
         {
-          "name": "specmatic-kafka-0.22.8-TRIAL.jar",
-          "url": "specmatic-kafka-0.22.8-TRIAL.jar",
-          "size": 494904,
-          "sha512": "f68cf7fdf1ec791f0bdb8b52b2ed32c4cf76c586a0ad4d095db3dc56c3f8ce9d21aeeae3637cab886b1d20e477661df66cf75fcfacd2c106190fe67417052dac",
-          "sha256": "197991cd75f1685fad2452616934cad1ec5773489de3fb1b481cced82c9506dc",
-          "sha1": "119b792bc5cb873495aadf00134b70796998dfa2",
-          "md5": "efcc80dbb7b4ede8ddd7559dda27ac97"
+          "name": "specmatic-kafka-0.22.9-TRIAL.jar",
+          "url": "specmatic-kafka-0.22.9-TRIAL.jar",
+          "size": 507895,
+          "sha512": "3f39cb92a2dde6a45279903c7f24553b078f2a32c7de0a4fb1e151ca0550348ba5d45eaf09a49f274fedc55f1549e8ed29c69c92e39bb7a4df9cb53c3799576a",
+          "sha256": "8bd97a97af068cf0315899be2684371341a6b40e7c66ecf29d56d05410fe2c88",
+          "sha1": "a01aa46b56b80840efc65ec8d9b24c4d43fe794d",
+          "md5": "1fc9b04472bac0dd4c0ccb99fbab345f"
         }
       ]
     },
@@ -102,22 +102,9 @@
         },
         {
           "group": "info.picocli",
-          "module": "picocli-spring-boot-starter",
-          "version": {
-            "requires": "4.7.0"
-          },
-          "excludes": [
-            {
-              "group": "ch.qos.logback",
-              "module": "logback-classic"
-            }
-          ]
-        },
-        {
-          "group": "info.picocli",
           "module": "picocli",
           "version": {
-            "requires": "4.7.0"
+            "requires": "4.7.6"
           }
         },
         {
@@ -270,13 +257,13 @@
       ],
       "files": [
         {
-          "name": "specmatic-kafka-0.22.8-TRIAL.jar",
-          "url": "specmatic-kafka-0.22.8-TRIAL.jar",
-          "size": 494904,
-          "sha512": "f68cf7fdf1ec791f0bdb8b52b2ed32c4cf76c586a0ad4d095db3dc56c3f8ce9d21aeeae3637cab886b1d20e477661df66cf75fcfacd2c106190fe67417052dac",
-          "sha256": "197991cd75f1685fad2452616934cad1ec5773489de3fb1b481cced82c9506dc",
-          "sha1": "119b792bc5cb873495aadf00134b70796998dfa2",
-          "md5": "efcc80dbb7b4ede8ddd7559dda27ac97"
+          "name": "specmatic-kafka-0.22.9-TRIAL.jar",
+          "url": "specmatic-kafka-0.22.9-TRIAL.jar",
+          "size": 507895,
+          "sha512": "3f39cb92a2dde6a45279903c7f24553b078f2a32c7de0a4fb1e151ca0550348ba5d45eaf09a49f274fedc55f1549e8ed29c69c92e39bb7a4df9cb53c3799576a",
+          "sha256": "8bd97a97af068cf0315899be2684371341a6b40e7c66ecf29d56d05410fe2c88",
+          "sha1": "a01aa46b56b80840efc65ec8d9b24c4d43fe794d",
+          "md5": "1fc9b04472bac0dd4c0ccb99fbab345f"
         }
       ]
     },
@@ -287,7 +274,18 @@
         "org.gradle.dependency.bundling": "shadowed",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime"
-      }
+      },
+      "files": [
+        {
+          "name": "specmatic-kafka-0.22.9-TRIAL-all.jar",
+          "url": "specmatic-kafka-0.22.9-TRIAL-all.jar",
+          "size": 95943276,
+          "sha512": "9a5bb7fe9d4b4129dfec89f8e0994b134bdf648fcf59c1283ba48561301963fc6fc44491915370c501c53f37e686e8d76e65753c050e9c772962a41838fc43fb",
+          "sha256": "5f4b1fbe10ebedcf54e0ae674933defbb7060b2f0a451c22084f4d21f1193984",
+          "sha1": "95c2921fc753f04dbc50c2974c2e1816f5eafa28",
+          "md5": "aa26297956527ff11014b17a340a6038"
+        }
+      ]
     }
   ]
 }
