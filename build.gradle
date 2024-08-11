@@ -9,10 +9,11 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+    mavenLocal()
     maven {
         url uri("lib")
     }
+    mavenCentral()
 }
 
 tasks.withType(KotlinCompile).configureEach {

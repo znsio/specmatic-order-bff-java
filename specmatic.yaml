@@ -10,8 +10,6 @@ report:
   formatters:
     - type: text
       layout: table
-    - type: html
-      outputDirectory: build/reports/specmatic/html
   types:
     APICoverage:
       OpenAPI:
