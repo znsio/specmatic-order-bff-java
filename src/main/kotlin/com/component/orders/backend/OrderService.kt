@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.util.*
 
-
 @Service
 class OrderService(private val jacksonObjectMapper: ObjectMapper) {
     private val authToken = "API-TOKEN-SPEC"
@@ -47,11 +46,10 @@ class OrderService(private val jacksonObjectMapper: ObjectMapper) {
     }
 
     fun findProducts(type: String): List<Product> {
-        val products = fetchProductsFromBackendAPI(type)
+        val products = fetchFirstProductFromBackendAPI(type)
         val producer = getKafkaProducer()
         products.forEach {
             val productMessage = ProductMessage(it.id, it.name, it.inventory)
-
             producer.send(ProducerRecord(
                 kafkaTopic,
                 jacksonObjectMapper.writeValueAsString(productMessage)
@@ -85,15 +83,15 @@ class OrderService(private val jacksonObjectMapper: ObjectMapper) {
         return headers
     }
 
-    private fun fetchProductsFromBackendAPI(type: String): List<Product> {
+    private fun fetchFirstProductFromBackendAPI(type: String): List<Product> {
         val apiUrl = orderAPIUrl + "/" + API.LIST_PRODUCTS.url + "?type=$type"
         val restTemplate = RestTemplate()
         val requestFactory = SimpleClientHttpRequestFactory()
-        requestFactory.setConnectTimeout(3000)
-        requestFactory.setReadTimeout(3000)
+        requestFactory.setConnectTimeout(4000)
+        requestFactory.setReadTimeout(4000)
         restTemplate.setRequestFactory(requestFactory)
         val response = restTemplate.getForEntity(apiUrl, List::class.java)
-        return response.body.map {
+        return response.body.take(1).map {
             val product = it as Map<*, *>
             Product(
                 product["name"].toString(),

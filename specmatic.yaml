@@ -6,6 +6,9 @@ sources:
     consumes:
       - io/specmatic/examples/store/openapi/api_order_v3.yaml
       - io/specmatic/examples/store/asyncapi/kafka.yaml
+test:
+  resiliencyTests:
+    enable: all
 report:
   formatters:
     - type: text
