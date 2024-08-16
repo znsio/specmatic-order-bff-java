@@ -15,6 +15,7 @@ class GlobalExceptionHandler {
     fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
         val badRequest = when (ex) {
             is ResourceAccessException -> HttpStatus.SERVICE_UNAVAILABLE
+            is IllegalStateException -> HttpStatus.INTERNAL_SERVER_ERROR
             is NoResourceFoundException -> HttpStatus.NOT_FOUND
             else -> HttpStatus.BAD_REQUEST
         }

@@ -12,6 +12,7 @@ import org.springframework.http.MediaType
 import org.springframework.http.client.SimpleClientHttpRequestFactory
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
+import java.lang.IllegalStateException
 import java.util.*
 
 @Service
@@ -91,6 +92,11 @@ class OrderService(private val jacksonObjectMapper: ObjectMapper) {
         requestFactory.setReadTimeout(4000)
         restTemplate.setRequestFactory(requestFactory)
         val response = restTemplate.getForEntity(apiUrl, List::class.java)
+        (response.body as List<*>).any { (it as Map<String, *>)["type"] != type }.let {
+            if (it) {
+                throw IllegalStateException("Product type mismatch")
+            }
+        }
         return response.body.take(1).map {
             val product = it as Map<*, *>
             Product(
