@@ -1,10 +1,7 @@
 {
   "http-request": {
     "method": "GET",
-    "path": "/products",
-    "query": {
-      "type": "{{@productTypeBasedLookup}}"
-    }
+    "path": "/products?type={{@productTypeBasedLookup}}"
   },
   "http-response": {
     "status": 200,
