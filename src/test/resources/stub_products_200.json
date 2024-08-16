@@ -1,7 +1,7 @@
 {
   "http-request": {
     "method": "GET",
-    "path": "/products?type=(string)"
+    "path": "/products?type=(ProductType)"
   },
   "http-response": {
     "status": 200,
@@ -10,7 +10,7 @@
         "id": 1,
         "name": "Iphone",
         "inventory": 10,
-        "type": "{{REQUEST.QUERY.type}}"
+        "type": "{{REQUEST.QUERY-PARAMS.type}}"
       }
     ],
     "status-text": "OK"
