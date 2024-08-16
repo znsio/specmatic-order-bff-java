@@ -59,7 +59,7 @@ class ApiTests {
 
     @Test
     fun `should search for available products`() {
-        val expectation = File("src/test/resources/stub_products_200.json").readText()
+        val expectation = File("src/test/resources/domain_service/stub_products_200.json").readText()
         setExpectations(expectation)
 
         val url = "http://localhost:8080/findAvailableProducts?type=gadget"
@@ -83,7 +83,7 @@ class ApiTests {
 
     @Test
     fun `should return 503 (SERVICE_UNAVAILABLE) status if backend service is down`() {
-        val expectation = File("src/test/resources/stub timeout.json").readText()
+        val expectation = File("src/test/resources/domain_service/stub_timeout.json").readText()
         setExpectations(expectation)
         val url = "http://localhost:8080/findAvailableProducts?type=other"
         val headers = HttpHeaders().apply {
