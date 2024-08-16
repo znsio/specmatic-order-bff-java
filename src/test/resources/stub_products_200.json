@@ -1,14 +1,24 @@
 {
+  "data": {
+    "@productType": {
+      "gadget": {
+        "name": "iPhone"
+      }
+    }
+  },
   "http-request": {
     "method": "GET",
-    "path": "/products?type=(ProductType)"
+    "path": "/products",
+    "query": {
+      "type": "{{@productType}}"
+    }
   },
   "http-response": {
     "status": 200,
     "body": [
       {
         "id": 1,
-        "name": "Iphone",
+        "name": "{{@productType}}",
         "inventory": 10,
         "type": "{{REQUEST.QUERY-PARAMS.type}}"
       }
