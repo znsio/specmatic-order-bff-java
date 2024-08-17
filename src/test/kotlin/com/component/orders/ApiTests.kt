@@ -75,10 +75,8 @@ class ApiTests {
 
         assert(response.statusCode == HttpStatus.OK)
 
-        val expectedResponse = expectation.toMap()["http-response"] as Map<String, Any>
-        val expectedResponseBody = expectedResponse["body"] as List<Map<String, Any>>
         val actualResponseBody = response.body as List<Map<String, Any>>
-        assertThat(actualResponseBody).isEqualTo(expectedResponseBody)
+        assertThat(actualResponseBody).isEqualTo(listOf(mapOf("name" to "iPhone", "type" to "gadget", "inventory" to 10, "id" to 1)))
     }
 
     @Test
