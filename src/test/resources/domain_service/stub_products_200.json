@@ -1,0 +1,30 @@
+{
+  "http-request": {
+    "method": "GET",
+    "path": "/products?type={{@productTypeBasedLookup}}"
+  },
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "{{@productTypeBasedLookup.productId}}",
+        "name": "{{@productTypeBasedLookup}}",
+        "inventory": "(number)",
+        "type": "{{REQUEST.QUERY-PARAMS.type}}"
+      }
+    ],
+    "status-text": "OK"
+  },
+  "data": {
+    "@productTypeBasedLookup": {
+      "gadget": {
+        "name": "iPhone",
+        "productId": 10
+      },
+      "book": {
+        "name": "Harry Potter",
+        "productId": 20
+      }
+    }
+  }
+}

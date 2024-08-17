@@ -59,7 +59,7 @@ class ApiTests {
 
     @Test
     fun `should search for available products`() {
-        val expectation = File("src/test/resources/stub_products_200.json").readText()
+        val expectation = File("src/test/resources/domain_service/stub_products_200.json").readText()
         setExpectations(expectation)
 
         val url = "http://localhost:8080/findAvailableProducts?type=gadget"
@@ -75,15 +75,18 @@ class ApiTests {
 
         assert(response.statusCode == HttpStatus.OK)
 
-        val expectedResponse = expectation.toMap()["http-response"] as Map<String, Any>
-        val expectedResponseBody = expectedResponse["body"] as List<Map<String, Any>>
         val actualResponseBody = response.body as List<Map<String, Any>>
-        assertThat(actualResponseBody).isEqualTo(expectedResponseBody)
+        val expectedProduct = mapOf("name" to "iPhone", "type" to "gadget", "id" to 10)
+        val actualProduct = actualResponseBody.single()
+
+        assertThat(actualProduct["name"]).isEqualTo(expectedProduct["name"])
+        assertThat(actualProduct["type"]).isEqualTo(expectedProduct["type"])
+        assertThat(actualProduct["id"]).isEqualTo(expectedProduct["id"])
     }
 
     @Test
     fun `should return 503 (SERVICE_UNAVAILABLE) status if backend service is down`() {
-        val expectation = File("src/test/resources/stub timeout.json").readText()
+        val expectation = File("src/test/resources/domain_service/stub_timeout.json").readText()
         setExpectations(expectation)
         val url = "http://localhost:8080/findAvailableProducts?type=other"
         val headers = HttpHeaders().apply {
