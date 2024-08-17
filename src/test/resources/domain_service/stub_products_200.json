@@ -7,9 +7,9 @@
     "status": 200,
     "body": [
       {
-        "id": 1,
+        "id": "{{@productTypeBasedLookup.productId}}",
         "name": "{{@productTypeBasedLookup}}",
-        "inventory": "{{@productTypeBasedLookup}}",
+        "inventory": "(number)",
         "type": "{{REQUEST.QUERY-PARAMS.type}}"
       }
     ],
@@ -19,11 +19,11 @@
     "@productTypeBasedLookup": {
       "gadget": {
         "name": "iPhone",
-        "inventory": 10
+        "productId": 10
       },
       "book": {
         "name": "Harry Potter",
-        "inventory": 20
+        "productId": 20
       }
     }
   }
