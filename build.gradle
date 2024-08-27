@@ -38,7 +38,7 @@ dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testApi 'io.specmatic:junit5-support:2.0.15'
+    testApi 'io.specmatic:junit5-support:2.0.16'
     testImplementation('io.specmatic:specmatic-kafka:0.22.9-TRIAL')
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
