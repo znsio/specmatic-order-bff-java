@@ -27,9 +27,14 @@ A typical web application might look like this. We can use Specmatic to practice
 ## Run Tests
 
 This will start the specmatic stub server for domain api and kafka mock using the information in specmatic.yaml and run contract tests using Specmatic.
-```shell
-./gradlew test
-```
+1. Using gradle -
+   ```shell
+     ./gradlew test
+   ```
+2. Using docker -
+   - Start Docker Desktop
+   - Run the application `./gradlew bootRun`
+   - Run the tests `docker run --network host -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/build/reports/specmatic:/usr/src/app/build/reports/specmatic"  znsio/specmatic test --port=8080 --host=host.docker.internal`
 
 # Break down each component to understand what is happening
 
