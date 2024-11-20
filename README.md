@@ -49,13 +49,13 @@ This will start the specmatic stub server for domain api and kafka mock using th
 1. Start domain api stub server
 
 ```shell
-docker run -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/src/test/resources/domain_service:/usr/src/app/domain_service" -p 8090:9000 znsio/specmatic stub --data /usr/src/app/domain_service
+docker run -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/src/test/resources/domain_service:/usr/src/app/domain_service" -p 8090:9000 znsio/specmatic stub --data /usr/src/app/domain_service
 ```
 
 2. Start Kafka stub server
 
 ```shell
-docker run -p 9092:9092 -p 2181:2181 -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial
+docker run -p 9092:9092 -p 2181:2181 -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial
 ```
 
 ## Start BFF Server
