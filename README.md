@@ -72,7 +72,7 @@ Note: For Windows OS, add `.exe` extension to curl command on PowerShell or use 
 curl -H "pageSize: 10" "http://localhost:8080/findAvailableProducts"
 ```
 
-You result should look like:
+Your result should look like:
 ```json
 [{"id":698,"name":"NUBYR","type":"book","inventory":278}]
 ```
