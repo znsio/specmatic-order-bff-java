@@ -29,6 +29,8 @@ jacocoTestReport {
     }
 }
 
+def specmatic_version = "2.0.45"
+
 dependencies {
     implementation platform('org.springframework.boot:spring-boot-dependencies:3.3.0')
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -38,7 +40,7 @@ dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testApi 'io.specmatic:junit5-support:2.0.42'
+    testApi "io.specmatic:junit5-support:${specmatic_version}"
     testImplementation('io.specmatic:specmatic-kafka:0.22.9-TRIAL')
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
