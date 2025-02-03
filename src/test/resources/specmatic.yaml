@@ -25,6 +25,4 @@ report:
           minThresholdPercentage: 70
           maxMissedEndpointsInSpec: 0
           enforce: true
-        excludedEndpoints:
-          - /health
 
