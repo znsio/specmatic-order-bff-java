@@ -25,7 +25,7 @@ class ContractTests : SpecmaticContractTest {
         private const val ACTUATOR_MAPPINGS_ENDPOINT =
             "http://$APPLICATION_HOST:$APPLICATION_PORT/actuator/mappings"
         private const val EXPECTED_NUMBER_OF_MESSAGES = 4
-        private const val EXCLUDED_ENDPOINTS = "/health"
+        private const val EXCLUDED_ENDPOINTS = "'/health'"
         @JvmStatic
         @BeforeAll
         fun setUp() {
