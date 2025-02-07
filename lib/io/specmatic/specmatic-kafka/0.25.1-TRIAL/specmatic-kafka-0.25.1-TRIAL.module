@@ -3,7 +3,7 @@
   "component": {
     "group": "io.specmatic",
     "module": "specmatic-kafka",
-    "version": "0.22.9-TRIAL",
+    "version": "0.25.1-TRIAL",
     "attributes": {
       "org.gradle.status": "release"
     }
@@ -36,13 +36,13 @@
       ],
       "files": [
         {
-          "name": "specmatic-kafka-0.22.9-TRIAL.jar",
-          "url": "specmatic-kafka-0.22.9-TRIAL.jar",
-          "size": 507895,
-          "sha512": "3f39cb92a2dde6a45279903c7f24553b078f2a32c7de0a4fb1e151ca0550348ba5d45eaf09a49f274fedc55f1549e8ed29c69c92e39bb7a4df9cb53c3799576a",
-          "sha256": "8bd97a97af068cf0315899be2684371341a6b40e7c66ecf29d56d05410fe2c88",
-          "sha1": "a01aa46b56b80840efc65ec8d9b24c4d43fe794d",
-          "md5": "1fc9b04472bac0dd4c0ccb99fbab345f"
+          "name": "specmatic-kafka-0.25.1-TRIAL.jar",
+          "url": "specmatic-kafka-0.25.1-TRIAL.jar",
+          "size": 705532,
+          "sha512": "7090cf2a97267a72dd5a152cae43f016b2e13369552fe36fcc05a4aee0e0257ad9bf00de2eb2b798bc1f776b3d4260d6f849bba6d817f8eb2221ea6a183e742b",
+          "sha256": "16753e18a0ce810fb5f243b10887a21c847e735ed7a3fea44a056e842086fb14",
+          "sha1": "5e92627c616f9eeeca2220cff0c8b4c21f2fcab9",
+          "md5": "e65a9a373d4c5ae02986129ba2f79fe7"
         }
       ]
     },
@@ -87,17 +87,10 @@
           }
         },
         {
-          "group": "com.fasterxml.jackson.dataformat",
-          "module": "jackson-dataformat-yaml",
-          "version": {
-            "requires": "2.14.0"
-          }
-        },
-        {
           "group": "com.asyncapi",
           "module": "asyncapi-core",
           "version": {
-            "requires": "1.0.0-EAP-3"
+            "requires": "1.0.0-RC2"
           }
         },
         {
@@ -118,7 +111,7 @@
           "group": "io.specmatic",
           "module": "specmatic-core",
           "version": {
-            "requires": "2.0.4"
+            "requires": "2.3.0"
           }
         },
         {
@@ -178,6 +171,13 @@
           }
         },
         {
+          "group": "com.fasterxml.jackson.dataformat",
+          "module": "jackson-dataformat-yaml",
+          "version": {
+            "requires": "2.16.0"
+          }
+        },
+        {
           "group": "com.fasterxml.jackson.core",
           "module": "jackson-databind",
           "version": {
@@ -188,7 +188,7 @@
           "group": "com.fasterxml.jackson.module",
           "module": "jackson-module-kotlin",
           "version": {
-            "requires": "2.15.3"
+            "requires": "2.16.0"
           }
         },
         {
@@ -257,13 +257,13 @@
       ],
       "files": [
         {
-          "name": "specmatic-kafka-0.22.9-TRIAL.jar",
-          "url": "specmatic-kafka-0.22.9-TRIAL.jar",
-          "size": 507895,
-          "sha512": "3f39cb92a2dde6a45279903c7f24553b078f2a32c7de0a4fb1e151ca0550348ba5d45eaf09a49f274fedc55f1549e8ed29c69c92e39bb7a4df9cb53c3799576a",
-          "sha256": "8bd97a97af068cf0315899be2684371341a6b40e7c66ecf29d56d05410fe2c88",
-          "sha1": "a01aa46b56b80840efc65ec8d9b24c4d43fe794d",
-          "md5": "1fc9b04472bac0dd4c0ccb99fbab345f"
+          "name": "specmatic-kafka-0.25.1-TRIAL.jar",
+          "url": "specmatic-kafka-0.25.1-TRIAL.jar",
+          "size": 705532,
+          "sha512": "7090cf2a97267a72dd5a152cae43f016b2e13369552fe36fcc05a4aee0e0257ad9bf00de2eb2b798bc1f776b3d4260d6f849bba6d817f8eb2221ea6a183e742b",
+          "sha256": "16753e18a0ce810fb5f243b10887a21c847e735ed7a3fea44a056e842086fb14",
+          "sha1": "5e92627c616f9eeeca2220cff0c8b4c21f2fcab9",
+          "md5": "e65a9a373d4c5ae02986129ba2f79fe7"
         }
       ]
     },
@@ -274,18 +274,7 @@
         "org.gradle.dependency.bundling": "shadowed",
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime"
-      },
-      "files": [
-        {
-          "name": "specmatic-kafka-0.22.9-TRIAL-all.jar",
-          "url": "specmatic-kafka-0.22.9-TRIAL-all.jar",
-          "size": 95943276,
-          "sha512": "9a5bb7fe9d4b4129dfec89f8e0994b134bdf648fcf59c1283ba48561301963fc6fc44491915370c501c53f37e686e8d76e65753c050e9c772962a41838fc43fb",
-          "sha256": "5f4b1fbe10ebedcf54e0ae674933defbb7060b2f0a451c22084f4d21f1193984",
-          "sha1": "95c2921fc753f04dbc50c2974c2e1816f5eafa28",
-          "md5": "aa26297956527ff11014b17a340a6038"
-        }
-      ]
+      }
     }
   ]
 }

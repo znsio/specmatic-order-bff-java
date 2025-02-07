@@ -9,10 +9,10 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     maven {
         url uri("lib")
     }
+    mavenLocal()
     mavenCentral()
 }
 
@@ -41,7 +41,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testApi "io.specmatic:junit5-support:${specmatic_version}"
-    testImplementation('io.specmatic:specmatic-kafka:0.22.9-TRIAL')
+    testImplementation('io.specmatic:specmatic-kafka:0.25.1-TRIAL')
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'
