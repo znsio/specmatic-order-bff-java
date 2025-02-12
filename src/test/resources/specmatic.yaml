@@ -1,17 +1,16 @@
----
 version: 2
 contracts:
   - git:
-      url: "https://github.com/znsio/specmatic-order-contracts.git"
+      url: https://github.com/znsio/specmatic-order-contracts.git
     provides:
-      - "io/specmatic/examples/store/openapi/product_search_bff_v4.yaml"
+      - io/specmatic/examples/store/openapi/product_search_bff_v4.yaml
     consumes:
-      - "io/specmatic/examples/store/openapi/api_order_v3.yaml"
-      - "io/specmatic/examples/store/asyncapi/kafka.yaml"
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+      - io/specmatic/examples/store/asyncapi/kafka.yaml
 report:
   formatters:
-    - type: "text"
-      layout: "table"
+    - type: text
+      layout: table
   types:
     APICoverage:
       OpenAPI:
@@ -21,6 +20,6 @@ report:
           enforce: true
 test:
   resiliencyTests:
-    enable: "all"
+    enable: all
 examples:
-  - "src/test/resources/bff"
+  - src/test/resources/bff
