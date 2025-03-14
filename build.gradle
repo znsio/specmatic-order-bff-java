@@ -12,7 +12,6 @@ repositories {
     maven {
         url uri("lib")
     }
-    mavenLocal()
     mavenCentral()
 }
 
@@ -29,7 +28,7 @@ jacocoTestReport {
     }
 }
 
-def specmatic_version = "2.7.1"
+def specmatic_version = "2.7.4"
 
 dependencies {
     implementation platform('org.springframework.boot:spring-boot-dependencies:3.4.0')
@@ -41,7 +40,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testApi "io.specmatic:junit5-support:${specmatic_version}"
-    testImplementation('io.specmatic:specmatic-kafka:0.26.0-TRIAL')
+    testImplementation('io.specmatic.kafka:specmatic-kafka:0.30.0')
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'

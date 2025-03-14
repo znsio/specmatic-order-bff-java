@@ -1,7 +1,7 @@
 package com.component.orders.contract
 
-import io.specmatic.async.mock.KafkaMock
-import io.specmatic.kafka.mock.model.Expectation
+import io.specmatic.kafka.Expectation
+import io.specmatic.kafka.KafkaMock
 import io.specmatic.stub.ContractStub
 import io.specmatic.stub.createStub
 import io.specmatic.test.SpecmaticContractTest

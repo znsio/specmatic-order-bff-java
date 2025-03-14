@@ -1,7 +1,7 @@
 package com.component.orders
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.specmatic.async.mock.KafkaMock
+import io.specmatic.kafka.KafkaMock
 import io.specmatic.stub.ContractStub
 import io.specmatic.stub.createStub
 import org.assertj.core.api.Assertions.assertThat

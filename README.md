@@ -55,7 +55,7 @@ docker run -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yam
 2. Start Kafka stub server
 
 ```shell
-docker run -p 9092:9092 -p 2181:2181 -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial
+docker run -p 9092:9092 -p 2181:2181 -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka virtualize
 ```
 
 ## Start BFF Server
