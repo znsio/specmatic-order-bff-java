@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.specmatic.kafka</groupId>
   <artifactId>specmatic-kafka-min</artifactId>
-  <version>0.30.5</version>
+  <version>0.30.8</version>
   <name>Specmatic-Kafka</name>
   <description>Specmatic-Kafka library</description>
   <url>https://specmatic.io</url>
@@ -17,13 +17,13 @@
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka_2.13</artifactId>
-      <version>3.7.1</version>
+      <version>3.8.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-clients</artifactId>
-      <version>3.7.1</version>
+      <version>3.8.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -42,6 +42,12 @@
       <groupId>org.apache.avro</groupId>
       <artifactId>avro</artifactId>
       <version>1.12.0</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.9.3</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -65,7 +71,7 @@
     <dependency>
       <groupId>io.specmatic</groupId>
       <artifactId>specmatic-core</artifactId>
-      <version>2.7.6</version>
+      <version>2.7.7</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
