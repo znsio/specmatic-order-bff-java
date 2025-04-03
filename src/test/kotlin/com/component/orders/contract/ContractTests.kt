@@ -2,6 +2,7 @@ package com.component.orders.contract
 
 import io.specmatic.kafka.Expectation
 import io.specmatic.kafka.KafkaMock
+import io.specmatic.kafka.VersionInfo
 import io.specmatic.stub.ContractStub
 import io.specmatic.stub.createStub
 import io.specmatic.test.SpecmaticContractTest
@@ -29,6 +30,7 @@ class ContractTests : SpecmaticContractTest {
         @JvmStatic
         @BeforeAll
         fun setUp() {
+            println("Using specmatic kafka - ${VersionInfo.describe()}")
             System.setProperty("host", APPLICATION_HOST)
             System.setProperty("port", APPLICATION_PORT)
             System.setProperty("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
@@ -52,4 +54,3 @@ class ContractTests : SpecmaticContractTest {
         }
     }
 }
-
