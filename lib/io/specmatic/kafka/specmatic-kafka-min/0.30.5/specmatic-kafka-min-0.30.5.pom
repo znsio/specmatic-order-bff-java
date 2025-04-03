@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.specmatic.kafka</groupId>
   <artifactId>specmatic-kafka-min</artifactId>
-  <version>0.30.4</version>
+  <version>0.30.5</version>
   <name>Specmatic-Kafka</name>
   <description>Specmatic-Kafka library</description>
   <url>https://specmatic.io</url>
