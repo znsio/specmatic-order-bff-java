@@ -13,6 +13,7 @@ repositories {
         url uri("lib")
     }
     mavenCentral()
+    mavenLocal()
 }
 
 tasks.withType(KotlinCompile).configureEach {
@@ -29,6 +30,7 @@ jacocoTestReport {
 }
 
 def specmatic_version = "2.7.6"
+def specmaticKafkaVersion = project.property("specmaticKafkaVersion")
 
 dependencies {
     implementation platform('org.springframework.boot:spring-boot-dependencies:3.4.0')
@@ -40,7 +42,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testApi "io.specmatic:junit5-support:${specmatic_version}"
-    testImplementation('io.specmatic.kafka:specmatic-kafka-min:0.30.4')
+    testImplementation("io.specmatic.kafka:specmatic-kafka-min:$specmaticKafkaVersion")
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'
