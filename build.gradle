@@ -12,6 +12,9 @@ repositories {
     maven {
         url uri("lib")
     }
+    maven {
+        url "https://packages.confluent.io/maven/"
+    }
     mavenCentral()
     mavenLocal()
 }
