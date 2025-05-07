@@ -20,5 +20,4 @@ report:
 test:
   resiliencyTests:
     enable: all
-examples:
-  - src/test/resources/bff
+

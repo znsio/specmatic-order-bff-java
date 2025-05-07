@@ -1,39 +1,87 @@
 package com.component.orders
 
-import io.specmatic.stub.ContractStub
-import io.specmatic.stub.createStub
-import io.specmatic.test.SpecmaticContractTest
-import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.BeforeAll
+import com.github.dockerjava.api.model.ExposedPort
+import com.github.dockerjava.api.model.PortBinding
+import com.github.dockerjava.api.model.Ports
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.testcontainers.containers.BindMode
+import org.testcontainers.containers.GenericContainer
+import org.testcontainers.containers.wait.strategy.Wait
+import org.testcontainers.junit.jupiter.Container
+import org.testcontainers.junit.jupiter.Testcontainers
 
+@Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-class ContractTests : SpecmaticContractTest {
+class ContractTests {
 
     companion object {
-        private lateinit var httpStub: ContractStub
-        private const val APPLICATION_HOST = "localhost"
-        private const val APPLICATION_PORT = "8080"
-        private const val HTTP_STUB_HOST = "localhost"
+        private const val APPLICATION_HOST = "host.docker.internal"
+        private const val APPLICATION_PORT = 8080
         private const val HTTP_STUB_PORT = 8090
         private const val ACTUATOR_MAPPINGS_ENDPOINT = "http://$APPLICATION_HOST:$APPLICATION_PORT/actuator/mappings"
         private const val EXCLUDED_ENDPOINTS = "'/health'"
-        @JvmStatic
-        @BeforeAll
-        fun setUp() {
-            System.setProperty("host", APPLICATION_HOST)
-            System.setProperty("port", APPLICATION_PORT)
-            System.setProperty("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
-            System.setProperty("filter","PATH!=$EXCLUDED_ENDPOINTS")
-            // Start Specmatic Http Stub and set the expectations
-            httpStub = createStub(listOf("./src/test/resources/domain_service"), HTTP_STUB_HOST, HTTP_STUB_PORT)
-        }
 
-        @JvmStatic
-        @AfterAll
-        fun tearDown() {
-            // Shutdown Specmatic Http Stub
-            httpStub.close()
-        }
+        @Container
+        private val stubContainer: GenericContainer<*> = GenericContainer("znsio/specmatic-openapi")
+            .withCommand(
+                "stub",
+                "--examples=examples",
+                "--port=$HTTP_STUB_PORT",
+            )
+            .withCreateContainerCmdModifier({ cmd ->
+                cmd.hostConfig?.withPortBindings(
+                    PortBinding(Ports.Binding.bindPort(8090), ExposedPort(8090))
+                )
+            })
+            .withExposedPorts(8090)
+            .withFileSystemBind(
+                "./src/test/resources/domain_service",
+                "/usr/src/app/examples",
+                BindMode.READ_ONLY
+            )
+            .withFileSystemBind(
+                "./src/test/resources/specmatic.yaml",
+                "/usr/src/app/specmatic.yaml",
+                BindMode.READ_ONLY
+            )
+            .waitingFor(Wait.forHttp("/actuator/health").forStatusCode(200))
+            .withLogConsumer { print(it.utf8String) }
+
+        private val testContainer: GenericContainer<*> = GenericContainer("znsio/specmatic-openapi")
+            .withCommand(
+                "test",
+                "--examples=examples",
+                "--host=$APPLICATION_HOST",
+                "--port=$APPLICATION_PORT",
+                "--filter=PATH!=$EXCLUDED_ENDPOINTS"
+            )
+            .withEnv("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
+            .withNetworkMode("host")
+            .withFileSystemBind(
+                "./src/test/resources/bff",
+                "/usr/src/app/examples",
+                BindMode.READ_ONLY
+            )
+            .withFileSystemBind(
+                "./src/test/resources/specmatic.yaml",
+                "/usr/src/app/specmatic.yaml",
+                BindMode.READ_ONLY
+            )
+            .withFileSystemBind(
+                "./build/reports/specmatic",
+                "/usr/src/app/build/reports/specmatic",
+                BindMode.READ_WRITE
+            )
+            .waitingFor(Wait.forLogMessage(".*Tests run:.*", 1))
+            .withLogConsumer { print(it.utf8String) }
+    }
+
+    @Test
+    fun contractTestsShouldPass() {
+        testContainer.start()
+        val exitCode = testContainer.currentContainerInfo.state.exitCodeLong
+        assertThat(exitCode).isEqualTo(0)
     }
 }
