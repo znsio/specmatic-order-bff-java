@@ -33,19 +33,16 @@ jacocoTestReport {
 }
 
 def specmatic_version = "2.10.0"
-def specmaticKafkaVersion = project.property("specmaticKafkaVersion")
 
 dependencies {
     implementation platform('org.springframework.boot:spring-boot-dependencies:3.4.0')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.apache.kafka:kafka-clients:3.7.0'
     implementation 'javax.validation:validation-api:2.0.1.Final'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testApi "io.specmatic:junit5-support:${specmatic_version}"
-    testImplementation("io.specmatic.kafka:specmatic-kafka-min:$specmaticKafkaVersion")
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'
