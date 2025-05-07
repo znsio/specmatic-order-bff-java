@@ -81,7 +81,7 @@ class ContractTests {
     @Test
     fun contractTestsShouldPass() {
         testContainer.start()
-        val exitCode = testContainer.currentContainerInfo.state.exitCodeLong
-        assertThat(exitCode).isEqualTo(0)
+        val hasSucceeded = testContainer.logs.contains("Failures: 0")
+        assertThat(hasSucceeded).isTrue()
     }
 }
