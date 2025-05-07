@@ -32,10 +32,10 @@ class ContractTests {
             )
             .withCreateContainerCmdModifier({ cmd ->
                 cmd.hostConfig?.withPortBindings(
-                    PortBinding(Ports.Binding.bindPort(8090), ExposedPort(8090))
+                    PortBinding(Ports.Binding.bindPort(HTTP_STUB_PORT), ExposedPort(HTTP_STUB_PORT))
                 )
             })
-            .withExposedPorts(8090)
+            .withExposedPorts(HTTP_STUB_PORT)
             .withFileSystemBind(
                 "./src/test/resources/domain_service",
                 "/usr/src/app/examples",
@@ -79,7 +79,7 @@ class ContractTests {
     }
 
     @Test
-    fun contractTestsShouldPass() {
+    fun specmaticContractTest() {
         testContainer.start()
         val hasSucceeded = testContainer.logs.contains("Failures: 0")
         assertThat(hasSucceeded).isTrue()
