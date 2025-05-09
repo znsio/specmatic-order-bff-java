@@ -20,4 +20,3 @@ report:
 test:
   resiliencyTests:
     enable: all
-
