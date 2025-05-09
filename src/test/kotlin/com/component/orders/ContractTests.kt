@@ -23,6 +23,7 @@ class ContractTests {
         private const val ACTUATOR_MAPPINGS_ENDPOINT = "http://$APPLICATION_HOST:$APPLICATION_PORT/actuator/mappings"
         private const val EXCLUDED_ENDPOINTS = "'/health'"
 
+        // The stub container's lifecycle is managed by the test container. It will start and stop automatically.
         @Container
         private val stubContainer: GenericContainer<*> = GenericContainer("znsio/specmatic-openapi")
             .withCommand(
@@ -49,6 +50,7 @@ class ContractTests {
             .waitingFor(Wait.forHttp("/actuator/health").forStatusCode(200))
             .withLogConsumer { print(it.utf8String) }
 
+        // We are not using the @Container annotation here because we want to start this container in our test after the application has started.
         private val testContainer: GenericContainer<*> = GenericContainer("znsio/specmatic-openapi")
             .withCommand(
                 "test",
@@ -83,5 +85,6 @@ class ContractTests {
         testContainer.start()
         val hasSucceeded = testContainer.logs.contains("Failures: 0")
         assertThat(hasSucceeded).isTrue()
+        // we don't need to stop the test container here because it will stop automatically when the test finish executing
     }
 }
