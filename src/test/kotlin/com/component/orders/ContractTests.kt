@@ -70,7 +70,9 @@ class ContractTests {
             .withLogConsumer { print(it.utf8String) }
 
         @Container
-        private val kafkaMockContainer: GenericContainer<*> = object: GenericContainer<Nothing>("znsio/specmatic-kafka") {
+        private val kafkaMockContainer: GenericContainer<*> = object: GenericContainer<Nothing>(
+            "znsio/specmatic-kafka:0.32.3"
+        ) {
             override fun start() {
                 super.start()
                 // wait for container to stabilize and then set expectations
@@ -85,12 +87,14 @@ class ContractTests {
                     HttpMethod.POST,
                     HttpEntity(
                         """
-                        [
-                            {
-                              "topic": "product-queries",
-                              "count": $EXPECTED_NUMBER_OF_MESSAGES
-                            }
-                        ]
+                        {
+                            "expectations": [
+                                {
+                                  "topic": "product-queries",
+                                  "count": $EXPECTED_NUMBER_OF_MESSAGES
+                                }
+                            ]
+                        }
                         """.trimIndent(),
                         HttpHeaders().apply {
                             contentType = MediaType.APPLICATION_JSON
