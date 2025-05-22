@@ -1,16 +1,20 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+    id 'org.jetbrains.kotlin.jvm' version '2.1.20'
     id 'org.springframework.boot' version '3.4.0'
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.23'
+    id 'org.jetbrains.kotlin.plugin.spring' version '2.1.20'
     id 'jacoco'
 }
 
 repositories {
     maven {
         url uri("lib")
+    }
+    maven {
+        url uri("/Users/yogeshanandanikam/project/specmatic-async/build/mvn-repo")
     }
     maven {
         url "https://packages.confluent.io/maven/"
@@ -22,6 +26,8 @@ repositories {
 tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "17"
+        compilerOptions.languageVersion.set(KotlinVersion.KOTLIN_2_1)
+        compilerOptions.apiVersion.set(KotlinVersion.KOTLIN_2_1)
     }
 }
 
@@ -32,7 +38,7 @@ jacocoTestReport {
     }
 }
 
-def specmatic_version = "2.10.0"
+def specmatic_version = "2.11.3"
 def specmaticKafkaVersion = project.property("specmaticKafkaVersion")
 
 dependencies {
@@ -45,22 +51,12 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testApi "io.specmatic:junit5-support:${specmatic_version}"
-    testImplementation("io.specmatic.kafka:specmatic-kafka:$specmaticKafkaVersion")
+    testImplementation("io.specmatic.async:specmatic-kafka:$specmaticKafkaVersion")
     testImplementation(
             'org.assertj:assertj-core:3.24.2',
             'org.junit.jupiter:junit-jupiter-api:5.10.1'
     )
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
-}
-
-sourceSets {
-    test {
-        resources {
-            srcDir file('src/test/kotlin')
-            exclude '**/*.java'
-            exclude '**/*.kt}'
-        }
-    }
 }
 
 test {
