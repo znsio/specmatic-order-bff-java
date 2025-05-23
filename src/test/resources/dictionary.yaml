@@ -1,0 +1,85 @@
+PATH-PARAMS:
+  id:
+    - 10
+    - 20
+
+QUERY-PARAMS:
+  type:
+    - gadget
+  productid:
+    - 10
+    - 20
+  status:
+    - fulfilled
+    - pending
+
+OrderId:
+  id:
+    - 10
+    - 20
+
+ProductId:
+  id:
+    - 10
+    - 20
+
+Order:
+  id:
+    - 10
+    - 20
+  productid:
+    - 10
+    - 20
+  count:
+    - 100
+    - 200
+  status:
+    - fulfilled
+    - pending
+
+OrderDetails:
+  productid:
+    - 10
+    - 20
+  count:
+    - 100
+    - 200
+  status:
+    - fulfilled
+    - pending
+
+Product:
+  id:
+    - 10
+    - 20
+  name:
+    - iPhone
+    - Samsung Galaxy
+  type:
+    - gadget
+  inventory:
+    - 100
+    - 200
+
+ProductDetails:
+  name:
+    - iPhone
+    - Samsung Galaxy
+  type:
+    - gadget
+  inventory:
+    - 100
+    - 200
+
+BadRequestErrorResponseBody:
+  timestamp:
+    - 1990-01-01T00:00:00Z
+    - 2026-01-01T00:00:00Z
+  status:
+    - 400
+  error:
+    - BadRequest
+    - InvalidRequest
+  message:
+    - Invalid product ID
+    - Product not found
