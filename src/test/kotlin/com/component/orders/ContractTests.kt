@@ -17,7 +17,6 @@ class ContractTests : SpecmaticContractTest {
     companion object {
         private lateinit var httpStub: ContractStub
         private lateinit var kafkaMock: KafkaMock
-        private const val SPECMATIC_DICTIONARY = "SPECMATIC_STUB_DICTIONARY"
         private const val APPLICATION_HOST = "localhost"
         private const val APPLICATION_PORT = "8080"
         private const val HTTP_STUB_HOST = "localhost"
@@ -36,7 +35,6 @@ class ContractTests : SpecmaticContractTest {
             System.setProperty("port", APPLICATION_PORT)
             System.setProperty("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
             System.setProperty("filter","PATH!=$EXCLUDED_ENDPOINTS")
-            System.setProperty(SPECMATIC_DICTIONARY, "./src/test/resources/dictionary.yaml")
             // Start Specmatic Http Stub and set the expectations
             httpStub = createStub(listOf("./src/test/resources/domain_service"), HTTP_STUB_HOST, HTTP_STUB_PORT)
 
