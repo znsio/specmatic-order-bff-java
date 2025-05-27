@@ -1,7 +1,7 @@
 version: 2
 contracts:
   - git:
-      url: https://github.com/znsio/specmatic-order-contracts.git
+      url: https://github.com/specmatic/specmatic-order-contracts.git
     provides:
       - io/specmatic/examples/store/openapi/product_search_bff_v4.yaml
     consumes:
