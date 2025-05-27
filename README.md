@@ -5,9 +5,9 @@
 
 This sample project demonstrates how we can practice contract-driven development and contract testing in a SpringBoot (Kotlin) application that depends on an external domain service and Kafka. Here, Specmatic is used to stub calls to domain API service based on its OpenAPI spec and mock Kafka based on its AsyncAPI spec.
 
-Here is the domain api [contract/open api spec](https://github.com/znsio/specmatic-order-contracts/blob/main/io/specmatic/examples/store/openapi/api_order_v3.yaml)
+Here is the domain api [contract/open api spec](https://github.com/specmatic/specmatic-order-contracts/blob/main/io/specmatic/examples/store/openapi/api_order_v3.yaml)
 
-Here is the [AsyncAPI spec](https://github.com/znsio/specmatic-order-contracts/blob/main/io/specmatic/examples/store/asyncapi/kafka.yaml) of Kafka that defines the topics and message schema.
+Here is the [AsyncAPI spec](https://github.com/specmatic/specmatic-order-contracts/blob/main/io/specmatic/examples/store/asyncapi/kafka.yaml) of Kafka that defines the topics and message schema.
 
 ## Definitions
 * BFF: Backend for Front End
@@ -34,7 +34,7 @@ This will start the specmatic stub server for domain api and kafka mock using th
 2. Using docker -
    - Start Docker Desktop
    - Run the application `./gradlew bootRun`
-   - Run the tests `docker run --network host -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/build/reports/specmatic:/usr/src/app/build/reports/specmatic"  znsio/specmatic test --port=8080 --host=host.docker.internal`
+   - Run the tests `docker run --network host -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/build/reports/specmatic:/usr/src/app/build/reports/specmatic"  specmatic/specmatic test --port=8080 --host=host.docker.internal`
 
 # Break down each component to understand what is happening
 
@@ -49,13 +49,13 @@ This will start the specmatic stub server for domain api and kafka mock using th
 1. Start domain api stub server
 
 ```shell
-docker run -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/src/test/resources/domain_service:/usr/src/app/domain_service" -p 8090:9000 znsio/specmatic stub --data /usr/src/app/domain_service
+docker run -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" -v "$PWD/src/test/resources/domain_service:/usr/src/app/domain_service" -p 8090:9000 specmatic/specmatic stub --data /usr/src/app/domain_service
 ```
 
 2. Start Kafka stub server
 
 ```shell
-docker run -p 9092:9092 -p 2181:2181 -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka virtualize
+docker run -p 9092:9092 -p 2181:2181 -v "$PWD/src/test/resources/specmatic.yaml:/usr/src/app/specmatic.yaml" specmatic/specmatic-kafka virtualize
 ```
 
 ## Start BFF Server
