@@ -1,8 +1,9 @@
 package com.component.orders
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.specmatic.async.specmatic.kafka.VersionInfo
+import io.specmatic.async.specmatic.kafka.VersionInfo as SpecmaticKafkaVersionInfo
 import io.specmatic.kafka.mock.KafkaMock
+import io.specmatic.specmatic.core.VersionInfo as SpecmaticCoreVersionInfo
 import io.specmatic.stub.ContractStub
 import io.specmatic.stub.createStub
 import org.assertj.core.api.Assertions.assertThat
@@ -26,7 +27,8 @@ class ApiTests {
         @BeforeAll
         @JvmStatic
         fun setUp() {
-            println("Using specmatic kafka - ${VersionInfo.describe()}")
+            println("Using specmatic - ${SpecmaticCoreVersionInfo.describe()}")
+            println("Using specmatic kafka - ${SpecmaticKafkaVersionInfo.describe()}")
             // Start Specmatic Http Stub
             httpStub = createStub("localhost", STUB_PORT, strict = true)
 
