@@ -46,13 +46,10 @@ jobs:
         echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
 
     - name: Run Specmatic Insights Github Build Reporter
-      uses: specmatic/specmatic-insights-build-reporter-github-action@v2.0.2
+      uses: specmatic/specmatic-insights-build-reporter-github-action@v2.1.0
       with:
-        github-token: ${{ secrets.ACTIONS_API_ACCESS_TOKEN }}
         org-id: ${{ secrets.SPECMATIC_ORG_ID }}
-        branch-ref: ${{ github.ref }}
         branch-name: ${{ github.ref_name }}
-        build-id: ${{ github.run_id }}
         repo-name: ${{ github.event.repository.name }}
         repo-id: ${{ github.repository_id }}
         repo-url: ${{ github.event.repository.html_url }}
