@@ -23,8 +23,6 @@ class ContractTests : SpecmaticContractTest {
         private const val HTTP_STUB_PORT = 8090
         private const val KAFKA_MOCK_HOST = "localhost"
         private const val KAFKA_MOCK_PORT = 9092
-        private const val ACTUATOR_MAPPINGS_ENDPOINT =
-            "http://$APPLICATION_HOST:$APPLICATION_PORT/actuator/mappings"
         private const val EXPECTED_NUMBER_OF_MESSAGES = 4
         private const val EXCLUDED_ENDPOINTS = "'/health'"
         @JvmStatic
@@ -33,7 +31,6 @@ class ContractTests : SpecmaticContractTest {
             println("Using specmatic kafka - ${VersionInfo.describe()}")
             System.setProperty("host", APPLICATION_HOST)
             System.setProperty("port", APPLICATION_PORT)
-            System.setProperty("endpointsAPI", ACTUATOR_MAPPINGS_ENDPOINT)
             System.setProperty("filter","PATH!=$EXCLUDED_ENDPOINTS")
             // Start Specmatic Http Stub and set the expectations
             httpStub = createStub(listOf("./src/test/resources/domain_service"), HTTP_STUB_HOST, HTTP_STUB_PORT)
