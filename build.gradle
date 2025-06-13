@@ -14,9 +14,6 @@ repositories {
         url uri("lib")
     }
     maven {
-        url uri("/Users/yogeshanandanikam/project/specmatic-async/build/mvn-repo")
-    }
-    maven {
         url "https://packages.confluent.io/maven/"
     }
     mavenCentral()
