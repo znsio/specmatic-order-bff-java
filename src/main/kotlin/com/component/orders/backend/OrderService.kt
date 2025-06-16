@@ -19,7 +19,7 @@ import java.util.*
 class OrderService(private val jacksonObjectMapper: ObjectMapper) {
     private val authToken = "API-TOKEN-SPEC"
 
-    @Value("\${order.api}")
+    @Value("\${order.api.url}")
     lateinit var orderAPIUrl: String
 
     @Value("\${kafka.bootstrap-servers}")
