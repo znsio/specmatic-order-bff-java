@@ -56,6 +56,12 @@ jobs:
         name: ${{ matrix.os }}-${{ matrix.java }}-html-report
         path: build/reports/specmatic/html
 
+    - name: Upload build/libs for Docker
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-libs
+        path: build/libs
+
   docker:
     if: github.ref == 'refs/heads/main'
     needs: build
@@ -66,6 +72,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Download build/libs from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: build-libs
+          path: build/libs
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
